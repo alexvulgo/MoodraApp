@@ -24,10 +24,6 @@ struct ContentView: View {
 
             Text("Moodra App")
                 .font(.largeTitle)
-                
-            
-
-
             Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
                 .toggleStyle(.button)
                 .padding(.top, 50)
