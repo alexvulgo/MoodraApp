@@ -17,7 +17,7 @@ struct ImmersiveView: View {
                 content.add(immersiveContentEntity)
 
                 // Add an ImageBasedLight for the immersive content
-                guard let resource = try? await EnvironmentResource(named: "sky") else { return }
+                guard let resource = try? await EnvironmentResource(named: "ImageBasedLight") else { return }
                 let iblComponent = ImageBasedLightComponent(source: .single(resource), intensityExponent: 0.25)
                 immersiveContentEntity.components.set(iblComponent)
                 immersiveContentEntity.components.set(ImageBasedLightReceiverComponent(imageBasedLight: immersiveContentEntity))

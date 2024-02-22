@@ -55,7 +55,7 @@ def Xform "Root"
             bindMaterialAs = "weakerThanDescendants"
         )
         float3 xformOp:scale = (30, 30, 30)
-        float3 xformOp:translate = (-1.5188164, 0.18826258, -3.8877866)
+        float3 xformOp:translate = (1.1018329, -4.3687115, -7.643158)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
@@ -86,17 +86,23 @@ def Xform "Root"
     {
         rel material:binding = </Root/Cube/DefaultMaterial>
         double size = 0.2
-        float3 xformOp:translate = (0, 1.5608194, -1.5124552)
+        float3 xformOp:scale = (500, 500, 500)
+        float3 xformOp:translate = (90.24403, -4.9584427, -25.748594)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
         {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
             prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
             def Shader "DefaultSurfaceShader"
             {
                 uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (1, 1, 1)
+                color3f inputs:diffuseColor = (0.00015001126, 1, 0.8658691) (
+                    colorSpace = "srgb_texture"
+                )
+                float inputs:metallic = 1
                 float inputs:roughness = 0.75
                 token outputs:surface
             }
