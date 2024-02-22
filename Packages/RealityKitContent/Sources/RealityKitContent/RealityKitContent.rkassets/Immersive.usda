@@ -46,5 +46,61 @@ def Xform "Root"
         float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
+
+    def Xform "ParticleEmitter" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/GridMaterial/GridMaterial> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        float3 xformOp:scale = (30, 30, 30)
+        float3 xformOp:translate = (-1.5188164, 0.18826258, -3.8877866)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                float3 shapeSize = (0.1, 0.1, 0.1)
+                float spawnVelocityFactor = 1
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float birthRate = 1000
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                }
+            }
+        }
+    }
+
+    def Cube "Cube" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Cube/DefaultMaterial>
+        double size = 0.2
+        float3 xformOp:translate = (0, 1.5608194, -1.5124552)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
 }
 
