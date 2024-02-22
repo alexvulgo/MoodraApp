@@ -10,6 +10,8 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
+    
+    private var viewModel = MudraViewModel()
 
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
@@ -33,15 +35,17 @@ struct ContentView: View {
                  */
                 
                 NavigationLink(destination: TutorialView()) {
-                    Button("Tutorial"){
-                        showImmersiveSpace = true
-                    }
-                    .backgroundStyle(Color.clear)
-                        .tint(.clear)
+                   Text("Tutorial")
+                        .onTapGesture {
+                            showImmersiveSpace = true
+                        }
                 }
                 
                 NavigationLink(destination: SessionView()) {
                     Text("Session")
+                        .onTapGesture {
+                            showImmersiveSpace = true
+                        }
                 }
                 .navigationBarTitle("Welcome")
             }
