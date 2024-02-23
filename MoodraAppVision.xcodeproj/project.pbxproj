@@ -17,6 +17,7 @@
 		63C8856C2B87520B00C33BFD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8856B2B87520B00C33BFD /* Extensions.swift */; };
 		63C8856F2B87546300C33BFD /* Mudra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8856E2B87546300C33BFD /* Mudra.swift */; };
 		63C885722B87556A00C33BFD /* MudraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885712B87556A00C33BFD /* MudraViewModel.swift */; };
+		63FD24DA2B88BBD200E8551D /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FD24D92B88BBD200E8551D /* DestinationView.swift */; };
 		FA4C389A2B84B250000852DD /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = FA4C38992B84B250000852DD /* RealityKitContent */; };
 		FA4C389C2B84B250000852DD /* MoodraAppVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C389B2B84B250000852DD /* MoodraAppVisionApp.swift */; };
 		FA4C389E2B84B250000852DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C389D2B84B250000852DD /* ContentView.swift */; };
@@ -37,6 +38,7 @@
 		63C8856B2B87520B00C33BFD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		63C8856E2B87546300C33BFD /* Mudra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mudra.swift; sourceTree = "<group>"; };
 		63C885712B87556A00C33BFD /* MudraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraViewModel.swift; sourceTree = "<group>"; };
+		63FD24D92B88BBD200E8551D /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		FA4C38942B84B250000852DD /* MoodraAppVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodraAppVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C38982B84B250000852DD /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		FA4C389B2B84B250000852DD /* MoodraAppVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodraAppVisionApp.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				63C8855D2B874CF500C33BFD /* TutorialView.swift */,
 				63C885612B874DA100C33BFD /* MudraDetailsView.swift */,
 				63C885672B874EA500C33BFD /* MudraView.swift */,
+				63FD24D92B88BBD200E8551D /* DestinationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C8856A2B87519400C33BFD /* HandGestureModel.swift in Sources */,
+				63FD24DA2B88BBD200E8551D /* DestinationView.swift in Sources */,
 				63C885602B874D3D00C33BFD /* TimerView.swift in Sources */,
 				63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */,
 				63C8856F2B87546300C33BFD /* Mudra.swift in Sources */,
