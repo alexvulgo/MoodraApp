@@ -38,21 +38,36 @@ def Xform "Root"
             def RealityKitStruct "currentState"
             {
                 token birthLocation = "Volume"
+                double emissionDuration = 1
                 token emitterShape = "Sphere"
                 float particleSpeed = 0.001
                 float3 shapeSize = (0.1, 0.1, 0.1)
-                token spawnOccasion = "OnBirth"
-                float spawnVelocityFactor = 1
+                token spawnOccasion = "OnDeath"
+                float spawnVelocityFactor = 0.001
 
                 def RealityKitStruct "mainEmitter"
                 {
-                    float birthRate = 10000
+                    float birthRate = 150
+                    bool isLightingEnabled = 0
+                    token opacityOverLife = "GradualFadeInOut"
+                    float particleSize = 0.05
+                    float sizeMultiplierAtEndOfLifespan = 0.3
+                    float4 startColorA = (0, 0.90956193, 0.47626895, 1)
+                    bool useStartColorRange = 0
                 }
 
                 def RealityKitStruct "spawnedEmitter"
                 {
                 }
             }
+        }
+
+        def RealityKitComponent "ImageBasedLight" (
+            active = false
+        )
+        {
+            uniform token info:id = "RealityKit.ImageBasedLight"
+            bool isGlobalIBL = 0
         }
     }
 }
