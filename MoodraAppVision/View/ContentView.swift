@@ -34,7 +34,7 @@ struct ContentView: View {
                     .padding(.top, 50)
                  */
                 
-                NavigationLink(destination: TutorialView()) {
+                NavigationLink(destination: DestinationView(.beach)) {
                    Text("Tutorial")
                         .onTapGesture {
                             showImmersiveSpace = true

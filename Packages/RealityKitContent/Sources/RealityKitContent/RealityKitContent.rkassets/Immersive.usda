@@ -8,35 +8,8 @@
 def Xform "Root"
 {
     reorder nameChildren = ["Sphere_Left", "Sphere_Right", "GridMaterial"]
-    def Sphere "Sphere_Right" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/GridMaterial/GridMaterial> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.1
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.5, 1.5, -1.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
-
-    def Sphere "Sphere_Left" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/GridMaterial/GridMaterial> (
-            bindMaterialAs = "weakerThanDescendants"
-        )
-        double radius = 0.1
-        quatf xformOp:orient = (1, 0, 0, 0)
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.5, 1.5, -1.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-    }
+    float3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
     def "GridMaterial" (
         active = true
@@ -54,8 +27,8 @@ def Xform "Root"
         rel material:binding = </Root/GridMaterial/GridMaterial> (
             bindMaterialAs = "weakerThanDescendants"
         )
-        float3 xformOp:scale = (30, 30, 30)
-        float3 xformOp:translate = (1.1018329, -4.3687115, -7.643158)
+        float3 xformOp:scale = (35, 35, 35)
+        float3 xformOp:translate = (1.1018329, 0.9, -0.76316)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "VFXEmitter"
@@ -64,12 +37,23 @@ def Xform "Root"
 
             def RealityKitStruct "currentState"
             {
+                token birthLocation = "Volume"
+                double emissionDuration = 1
+                token emitterShape = "Sphere"
+                float particleSpeed = 0.001
                 float3 shapeSize = (0.1, 0.1, 0.1)
-                float spawnVelocityFactor = 1
+                token spawnOccasion = "OnDeath"
+                float spawnVelocityFactor = 0.001
 
                 def RealityKitStruct "mainEmitter"
                 {
-                    float birthRate = 1000
+                    float birthRate = 150
+                    bool isLightingEnabled = 0
+                    token opacityOverLife = "GradualFadeInOut"
+                    float particleSize = 0.05
+                    float sizeMultiplierAtEndOfLifespan = 0.3
+                    float4 startColorA = (0, 0.90956193, 0.47626895, 1)
+                    bool useStartColorRange = 0
                 }
 
                 def RealityKitStruct "spawnedEmitter"
@@ -77,35 +61,13 @@ def Xform "Root"
                 }
             }
         }
-    }
 
-    def Cube "Cube" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/Cube/DefaultMaterial>
-        double size = 0.2
-        float3 xformOp:scale = (500, 500, 500)
-        float3 xformOp:translate = (90.24403, -4.9584427, -25.748594)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def Material "DefaultMaterial"
+        def RealityKitComponent "ImageBasedLight" (
+            active = false
+        )
         {
-            token outputs:mtlx:surface
-            token outputs:realitykit:vertex
-            prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-            def Shader "DefaultSurfaceShader"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.00015001126, 1, 0.8658691) (
-                    colorSpace = "srgb_texture"
-                )
-                float inputs:metallic = 1
-                float inputs:roughness = 0.75
-                token outputs:surface
-            }
+            uniform token info:id = "RealityKit.ImageBasedLight"
+            bool isGlobalIBL = 0
         }
     }
 }
