@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Mudra {
+class Mudra: Identifiable {
     var images: [String] = ["default-mudra", "default-mudra2"]
     var instructions: [String] = ["sugg1", "sugg2"]
     

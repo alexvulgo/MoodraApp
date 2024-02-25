@@ -24,6 +24,7 @@
 		FA4C38A22B84B250000852DD /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A12B84B250000852DD /* ImageBasedLighting.skybox */; };
 		FA4C38A42B84B25D000852DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A32B84B25D000852DD /* Assets.xcassets */; };
 		FA4C38A72B84B25D000852DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A62B84B25D000852DD /* Preview Assets.xcassets */; };
+		FAEA5D052B88AD53007BE0E6 /* MudraSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEA5D042B88AD53007BE0E6 /* MudraSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		FA4C38A32B84B25D000852DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA4C38A62B84B25D000852DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FA4C38A82B84B25D000852DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAEA5D042B88AD53007BE0E6 /* MudraSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				63C8855D2B874CF500C33BFD /* TutorialView.swift */,
 				63C885612B874DA100C33BFD /* MudraDetailsView.swift */,
 				63C885672B874EA500C33BFD /* MudraView.swift */,
+				FAEA5D042B88AD53007BE0E6 /* MudraSelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */,
 				63C8856F2B87546300C33BFD /* Mudra.swift in Sources */,
 				FA4C389E2B84B250000852DD /* ContentView.swift in Sources */,
+				FAEA5D052B88AD53007BE0E6 /* MudraSelectionView.swift in Sources */,
 				FA4C389C2B84B250000852DD /* MoodraAppVisionApp.swift in Sources */,
 				FA4C38A02B84B250000852DD /* ImmersiveView.swift in Sources */,
 				63C885622B874DA100C33BFD /* MudraDetailsView.swift in Sources */,
