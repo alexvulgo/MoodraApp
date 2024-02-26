@@ -55,7 +55,7 @@ struct ContentView: View {
         .onChange(of: showImmersiveSpace) { _, newValue in
             Task {
                 if newValue {
-                    switch await openImmersiveSpace(id: "ImmersiveSpace") {
+                    switch await openImmersiveSpace(id: "beach") {
                     case .opened:
                         immersiveSpaceIsShown = true
                     case .error, .userCancelled:
