@@ -8,15 +8,76 @@
 import SwiftUI
 
 struct SessionView: View {
+    
+    @ObservedObject var timer : SimpleTimer = SimpleTimer(action: {})
+    @State private var isPresentingTimerView = false
+    let settings = [5, 10, 15, 20, 25, 30]
+    @State var selectedOption = 5
+    
     var body: some View {
-        NavigationStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        } .navigationTitle("Start a new session")
         
-           
+        if !isPresentingTimerView {
+            
+            HStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    HStack(alignment: .top) {
+                        Button {
+                            Task {
+                                
+                            }
+                        } label: {
+                            Label("Back", systemImage: "chevron.backward")
+                                .labelStyle(.iconOnly)
+                        }
+                        .offset(x: -10)
+                        
+                        Text("Start session")
+                            .font(.system(size: 20))
+                            .bold()
+                            .padding(.trailing, 60)
+                            .frame(width: 180, height: 40)
+                    }
+                    
+                    Text("Take some of your time to meditate by focusing on the movement of your hands.")
+                        .font(.system(size: 10))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                
+                    HStack{
+                        
+                        Picker("Select an Option", selection: $selectedOption) {
+                            ForEach(0..<settings.count) { index in
+                                Text((String(format: "%d min", settings[index]))).tag(settings[index])
+                            }
+                        }
+                        
+                        Button("Start") {
+                            isPresentingTimerView.toggle()
+                            timer.start()
+                        }
+                       
+                    }.onChange(of: selectedOption, {timer.set_timer(setMinutes: selectedOption)})
+                }.padding(.vertical, 12)
+            }.frame(width: 260)
+        }
+        else{
+            TimerView(timer: timer, isPresented: $isPresentingTimerView, timeSelected: selectedOption)
+                .glassBackgroundEffect(
+                in: RoundedRectangle(
+                    cornerRadius: 32,
+                    style: .continuous
+                )
+            )
+        }
     }
 }
 
 #Preview {
-    SessionView()
+
+    SessionView().glassBackgroundEffect(
+        in: RoundedRectangle(
+            cornerRadius: 32,
+            style: .continuous
+        )
+    )
 }
