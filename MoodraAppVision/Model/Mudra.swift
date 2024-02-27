@@ -7,7 +7,16 @@
 
 import Foundation
 
-class Mudra: Identifiable {
+class Mudra: Identifiable, Equatable, Hashable {
+    
+    static func == (lhs: Mudra, rhs: Mudra) -> Bool {
+        return true
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(images)
+    }
+    
     var images: [String] = ["default-mudra", "default-mudra2"]
     var instructions: [String] = ["sugg1", "sugg2"]
     

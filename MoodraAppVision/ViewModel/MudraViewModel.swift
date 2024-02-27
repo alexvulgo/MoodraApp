@@ -11,14 +11,17 @@ class MudraViewModel {
     static let shared = MudraViewModel()
     
     var mudras: [Mudra] = [
+        
     Mudra(images: ["default-mudra", "default-mudra2"],
           instructions: ["default-mudra", "default-mudra2"],
           name: "Mudra",
           info: "Info"),
+    
     Mudra(images: ["default-mudra", "default-mudra2"],
           instructions: ["default-mudra", "default-mudra2"],
           name: "Mudra",
           info: "Info")
+    
     ]
     
     
