@@ -13,35 +13,43 @@ struct MudraSelectionView: View {
     
     @State var selectedMudra : Mudra?
     
+    @State private var currentIndex = 0
+    
+    @GestureState private var dragOffset : CGFloat = 0
+    
     var body: some View {
         NavigationStack {
             
             VStack(alignment: .leading) {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
+                    HStack {
                         ForEach(mudra.mudras) { mudras in
-                            ZStack(){
-                                Text(mudras.images[0])
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.ultraThinMaterial)
-                                .containerRelativeFrame(.vertical)
-                                .frame(width: 250, height: 300)
-                                .frame(depth: 1000)
-                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, y: 10)
-                                .scrollTransition(axis: .horizontal) { content, phase in
-                                    content
-                                        .rotation3DEffect(Angle(degrees: (phase.value * -30)), axis: (x: 0, y: 1 , z: 0))
-                                    
-                                        .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
-                                }
-                                }
-                            
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.selectedMudra = mudras
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                Image(mudras.images[0])
+                                    .resizable()
+                                    .cornerRadius(15)
+                                    .frame(width: 250, height: 300)
+                                    .shadow(radius: 10, y: 10)
+                                    .scrollTransition(topLeading: .interactive,bottomTrailing: .interactive,axis: .horizontal) { effect, phase in effect
+                                            .scaleEffect(1 - abs(phase.value))
+                                            .opacity(1 - abs(phase.value))
+                                            .rotation3DEffect(Angle(degrees: (phase.value * 90)), axis: (x: 0, y: 1 , z: 0))
+                                        
+                                            .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
                                     }
-                                }
-                            
+                                
+                                
+                                    
+                                
+                                    .onTapGesture {
+                                        withAnimation {
+                                            self.selectedMudra = mudras
+                                        }
+                                    }
+                                
+                                
+                            } .frame(depth: 50)
                             
                         } .scrollTargetLayout()
                     }
