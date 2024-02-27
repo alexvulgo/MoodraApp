@@ -9,18 +9,31 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
+
 struct ContentView: View {
     
     private var viewModel = MudraViewModel()
+    @State var val = 0
 
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
     @State private var startASession = false
+    
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismiss) private var dismiss
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    func dismissWindow() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+            dismiss()
+        }
+    }
 
     var body: some View {
+    
+        
         NavigationStack{
             VStack {
                 Model3D(named: "Scene", bundle: realityKitContentBundle)
@@ -28,24 +41,29 @@ struct ContentView: View {
                 
                 Text("Moodra App")
                     .font(.largeTitle)
+                
+                Button("Open") {
+                    openWindow(id: "mini")
+                    dismissWindow()
+                   
+                }.task {
+                   
+                }
+                
                 /*
                 Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
                     .toggleStyle(.button)
                     .padding(.top, 50)
                  */
                 
-                NavigationLink(destination: DestinationView(.beach)) {
+                NavigationLink(destination: TutorialView()) {
                    Text("Tutorial")
-                        .onTapGesture {
-                            showImmersiveSpace = true
-                        }
+                        
                 }
                 
                 NavigationLink(destination: SessionView()) {
                     Text("Session")
-                        .onTapGesture {
-                            showImmersiveSpace = true
-                        }
+                        
                 }
                 .navigationBarTitle("Welcome")
             }
