@@ -23,33 +23,38 @@ struct MudraSelectionView: View {
             VStack(alignment: .leading) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(mudra.mudras) { mudras in
+                        ForEach(0..<mudra.mudras.count, id: \.self) { index in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
-                                Image(mudras.images[0])
-                                    .resizable()
-                                    .cornerRadius(15)
-                                    .frame(width: 250, height: 300)
-                                    .shadow(radius: 10, y: 10)
-                                    .scrollTransition(topLeading: .interactive,bottomTrailing: .interactive,axis: .horizontal) { effect, phase in effect
-                                            .scaleEffect(1 - abs(phase.value))
-                                            .opacity(1 - abs(phase.value))
-                                            .rotation3DEffect(Angle(degrees: (phase.value * 90)), axis: (x: 0, y: 1 , z: 0))
-                                        
-                                            .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
-                                    }
-                                
-                                
+                                    .fill(.ultraThinMaterial)
+                                VStack(){
+                                    Image(mudra.mudras[index].images[0])
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(15)
+                                        .frame(width: 250)
+                                        .shadow(radius: 10, y: 10)
+                                        .scrollTransition(topLeading: .interactive,bottomTrailing: .interactive,axis: .horizontal) { effect, phase in effect
+                                                .scaleEffect(1 - abs(phase.value))
+                                                .opacity(1 - abs(phase.value))
+                                                .rotation3DEffect(Angle(degrees: (phase.value * 90)), axis: (x: 0, y: 1 , z: 0))
+                                            
+                                                .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
+                                        }
+                                    
+                                    Text(mudra.mudras[index].name)
+                                }
                                     
                                 
                                     .onTapGesture {
                                         withAnimation {
-                                            self.selectedMudra = mudras
+                                            self.selectedMudra = mudra.mudras[index]
                                         }
                                     }
                                 
                                 
                             } .frame(depth: 50)
+                                .scaleEffect(currentIndex == index ? 1.0 : 0.8)
                             
                         } .scrollTargetLayout()
                     }
