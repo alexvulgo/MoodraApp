@@ -8,6 +8,7 @@ import SwiftUI
 import RealityKit
 import Combine
 import AVFoundation
+import RealityKitContent
 
 /// A view that displays a 360 degree scene in which to watch video.
 struct DestinationView: View {
@@ -26,6 +27,11 @@ struct DestinationView: View {
             let rootEntity = Entity()
             rootEntity.addSkybox(for: destination)
             content.add(rootEntity)
+            
+            if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
+                content.add(immersiveContentEntity)
+            }
+            
         } update: { content in
             guard destinationChanged else { return }
             guard let entity = content.entities.first else { fatalError() }
@@ -34,18 +40,6 @@ struct DestinationView: View {
                 destinationChanged = false
             }
         }
-        // Handle the case where the app is already playing video in a destination and:
-        // 1. The user opens the Up Next tab and navigates to a new item, or
-        // 2. The user presses the "Play Next" button in the player UI.
-        /*
-         .onChange(of: model.currentItem) { oldValue, newValue in
-         if let newValue, destination != newValue.destination {
-         destination = newValue.destination
-         destinationChanged = true
-         }
-         }
-         .transition(.opacity)
-         */
     }
 }
 
