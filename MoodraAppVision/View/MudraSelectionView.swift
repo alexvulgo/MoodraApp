@@ -11,7 +11,7 @@ struct MudraSelectionView: View {
     
     var mudra = MudraViewModel()
     
-    @State var mudras : Mudra?
+    @State var selectedMudra : Mudra?
     
     var body: some View {
         NavigationStack {
@@ -20,6 +20,8 @@ struct MudraSelectionView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
                         ForEach(mudra.mudras) { mudras in
+                            ZStack(){
+                                Text(mudras.images[0])
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(.ultraThinMaterial)
                                 .containerRelativeFrame(.vertical)
@@ -29,14 +31,14 @@ struct MudraSelectionView: View {
                                 .scrollTransition(axis: .horizontal) { content, phase in
                                     content
                                         .rotation3DEffect(Angle(degrees: (phase.value * -30)), axis: (x: 0, y: 1 , z: 0))
-                                        
+                                    
                                         .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
-                                
+                                }
                                 }
                             
                                 .onTapGesture {
                                     withAnimation {
-                                        self.mudras = mudras
+                                        self.selectedMudra = mudras
                                     }
                                 }
                             
@@ -48,7 +50,10 @@ struct MudraSelectionView: View {
                     .safeAreaPadding(.horizontal,32)
                     .scrollClipDisabled()
                     .scrollTargetBehavior(.viewAligned)
-                    .defaultScrollAnchor(.center)
+                    .scrollPosition(id: $selectedMudra)
+                    .onAppear() {
+                        selectedMudra = mudra.mudras[2]
+                    }
                     
                     
                 }
