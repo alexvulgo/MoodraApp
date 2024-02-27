@@ -18,59 +18,62 @@ struct MudraSelectionView: View {
     @GestureState private var dragOffset : CGFloat = 0
     
     var body: some View {
+        
         NavigationStack {
             
-            VStack(alignment: .leading) {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(0..<mudra.mudras.count, id: \.self) { index in
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.ultraThinMaterial)
-                                VStack(){
-                                    Image(mudra.mudras[index].images[0])
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(15)
-                                        .frame(width: 250)
-                                        .shadow(radius: 10, y: 10)
-                                        .scrollTransition(topLeading: .interactive,bottomTrailing: .interactive,axis: .horizontal) { effect, phase in effect
-                                                .scaleEffect(1 - abs(phase.value))
-                                                .opacity(1 - abs(phase.value))
-                                                .rotation3DEffect(Angle(degrees: (phase.value * 90)), axis: (x: 0, y: 1 , z: 0))
-                                            
-                                                .scaleEffect(x: phase.isIdentity ? 1 : 0.8 , y: phase.isIdentity ? 1 : 0.8)
-                                        }
-                                    
-                                    Text(mudra.mudras[index].name)
-                                }
-                                    
+            VStack() {
+                
+                ZStack {
+                    //Mudra Card Scrolling
+                    ForEach(0..<mudra.mudras.count, id: \.self) { index in
+                        ZStack(){
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(.ultraThinMaterial)
                                 
-                                    .onTapGesture {
-                                        withAnimation {
-                                            self.selectedMudra = mudra.mudras[index]
-                                        }
-                                    }
+                            VStack(){
+                                Image(mudra.mudras[index].images[0])
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
                                 
-                                
-                            } .frame(depth: 50)
-                                .scaleEffect(currentIndex == index ? 1.0 : 0.8)
+                                Text(mudra.mudras[index].name)
+                            }
+                        } //END OF CARD ZSTACK
+                        .frame(width: 240, height: 300)
+                        .opacity(currentIndex == index ? 1.0 : 0.5)
+                        .scaleEffect(currentIndex == index ? 1.2 : 1.0)
+                        .offset(x: CGFloat(index - currentIndex)*250 + dragOffset, y:0)
+                
+                        //GLASS EFFECT
+                        .background {
                             
-                        } .scrollTargetLayout()
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
                     }
-                    
-                    .frame(height: 300)
-                    .safeAreaPadding(.horizontal,32)
-                    .scrollClipDisabled()
-                    .scrollTargetBehavior(.viewAligned)
-                    .scrollPosition(id: $selectedMudra)
-                    .onAppear() {
-                        selectedMudra = mudra.mudras[2]
-                    }
-                    
-                    
                 }
-            }
+                .gesture(
+                    DragGesture()
+                        .onEnded({ value in
+                            let threshold: CGFloat = 50
+                            if value.translation.width > threshold {
+                                withAnimation {
+                                    currentIndex = max(0, currentIndex-1)
+                                    
+                                }
+                            } else if value.translation.width < -threshold {
+                                withAnimation {
+                                    currentIndex = min(mudra.mudras.count, currentIndex+1)
+                                }
+                            }
+                        
+                        })
+                    
+                    )
+            } .navigationTitle("Choose mudras")
             
         }
     }
