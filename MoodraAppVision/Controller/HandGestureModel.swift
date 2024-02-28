@@ -89,18 +89,30 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             
             let leftHandMiddleTip = leftHandAnchor.handSkeleton?.joint(.middleFingerTip),
             let rightHandMiddleTip = rightHandAnchor.handSkeleton?.joint(.middleFingerTip),
+            
+            let leftHandMiddleIntermediateTip = leftHandAnchor.handSkeleton?.joint(.middleFingerIntermediateTip),
+            let rightHandMiddleIntermediateTip = rightHandAnchor.handSkeleton?.joint(.middleFingerIntermediateTip),
+            
             //Ring Finger
             let leftHandRingKnuckle = leftHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
             let rightHandMiddleKnuckle = rightHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
             
             let leftHandRingTip = leftHandAnchor.handSkeleton?.joint(.ringFingerTip),
             let rightHandRingTip = rightHandAnchor.handSkeleton?.joint(.ringFingerTip),
+            
+            let leftHandRingIntermediateTip = leftHandAnchor.handSkeleton?.joint(.ringFingerIntermediateTip),
+            let rightHandRingIntermediateTip = rightHandAnchor.handSkeleton?.joint(.ringFingerIntermediateTip),
+            
             //Little Finger
             let leftHandLittleKnuckle = leftHandAnchor.handSkeleton?.joint(.littleFingerKnuckle),
             let rightHandLittleKnuckle = rightHandAnchor.handSkeleton?.joint(.littleFingerKnuckle),
             
             let leftHandLittleTip = leftHandAnchor.handSkeleton?.joint(.littleFingerTip),
             let rightHandLittleTip = rightHandAnchor.handSkeleton?.joint(.littleFingerTip),
+            
+            let leftHandLittleIntermediateTip = leftHandAnchor.handSkeleton?.joint(.littleFingerIntermediateTip),
+            let rightHandLittleIntermediateTip = rightHandAnchor.handSkeleton?.joint(.littleFingerIntermediateTip),
+            
             //Thumb
             let leftHandThumbKnuckle = leftHandAnchor.handSkeleton?.joint(.thumbKnuckle),
             let rightHandThumbKnuckle = rightHandAnchor.handSkeleton?.joint(.thumbKnuckle),
@@ -108,9 +120,17 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             let leftHandThumbTipPosition = leftHandAnchor.handSkeleton?.joint(.thumbTip),
             let rightHandThumbTipPosition = rightHandAnchor.handSkeleton?.joint(.thumbTip),
             
+            let leftHandThumpIntermediateTip = leftHandAnchor.handSkeleton?.joint(.thumbIntermediateTip),
+            let rightHandThumbIntermediateTip = rightHandAnchor.handSkeleton?.joint(.thumbIntermediateTip),
+            
             //Index
             let rightHandIndexFingerTip = rightHandAnchor.handSkeleton?.joint(.indexFingerTip),
             let leftHandIndexFingerTip = leftHandAnchor.handSkeleton?.joint(.indexFingerTip),
+            
+            let leftHandIndexIntermediateTip = leftHandAnchor.handSkeleton?.joint(.indexFingerIntermediateTip),
+            let rightHandIndexIntermediateTip = rightHandAnchor.handSkeleton?.joint(.indexFingerIntermediateTip),
+            
+                
             
             leftHandIndexFingerTip.isTracked && leftHandThumbTipPosition.isTracked &&
                 rightHandIndexFingerTip.isTracked && rightHandThumbTipPosition.isTracked &&

@@ -120,6 +120,8 @@ struct Fingers {
 
 typealias PossibleFingers = (thumb: PossibleThumb, index: PossibleFinger, middle: PossibleFinger, ring: PossibleFinger, little: PossibleFinger, wrist: CGPoint?)
 
+
+
 let defaultHand = Fingers(thumb: Thumb(TIP: .zero, IP: .zero, MP: .zero, CMC: .zero),
                           index: Finger(TIP: .zero, DIP: .zero, PIP: .zero, MCP: .zero),
                           middle: Finger(TIP: .zero, DIP: .zero, PIP: .zero, MCP: .zero),
