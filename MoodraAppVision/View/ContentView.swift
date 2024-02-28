@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
     @State private var startASession = false
-    
+    @State private var isPresentedSessionView = false 
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
 
@@ -26,7 +26,7 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     func dismissWindow() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             dismiss()
         }
     }
@@ -42,14 +42,6 @@ struct ContentView: View {
                 Text("Moodra App")
                     .font(.largeTitle)
                 
-                Button("Open") {
-                    openWindow(id: "mini")
-                    dismissWindow()
-                   
-                }.task {
-                   
-                }
-                
                 /*
                 Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
                     .toggleStyle(.button)
@@ -61,9 +53,9 @@ struct ContentView: View {
                         
                 }
                 
-                NavigationLink(destination: SessionView()) {
-                    Text("Session")
-                        
+                Button("Session") {
+                    openWindow(id: "mini")
+                    dismissWindow()
                 }
                 .navigationBarTitle("Welcome")
             }

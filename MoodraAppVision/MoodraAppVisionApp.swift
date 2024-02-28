@@ -10,18 +10,15 @@ import SwiftUI
 @main
 struct MoodraAppVisionApp: App {
     var body: some Scene {
-        WindowGroup {
+        WindowGroup (id: "main"){
             ContentView()
         }
         .windowResizability(.contentSize)
         
         WindowGroup(id: "mini") { // Identify the window group.
             SessionView() // the SwiftUI view
-                .frame(
-                    minWidth: 100, maxWidth: 400,
-                    minHeight: 100, maxHeight: 400)
         }
-       .defaultSize(CGSize(width: 300, height: 150))
+       .defaultSize(CGSize(width: 420, height: 240))
 /*
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView()
