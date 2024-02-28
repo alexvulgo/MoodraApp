@@ -122,6 +122,7 @@
 		63FEE7252B8F257A00908006 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				63C885692B87519400C33BFD /* HandGestureModel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,7 +136,6 @@
 				63FEE72E2B8F263A00908006 /* FileManager+Extensions.swift */,
 				63FEE72C2B8F261700908006 /* CameraView.swift */,
 				63FEE7212B8F24F300908006 /* HandTerms.swift */,
-				63C885692B87519400C33BFD /* HandGestureModel.swift */,
 				63FEE7232B8F253E00908006 /* ApprovalGestureProcessor.swift */,
 			);
 			path = HandTrackingVision;

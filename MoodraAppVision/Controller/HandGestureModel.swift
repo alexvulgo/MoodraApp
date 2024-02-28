@@ -83,12 +83,35 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         
         // Get all required joints and check if they are tracked.
         guard
+            //Middle Finger
+            let leftHandMiddleKnuckle = leftHandAnchor.handSkeleton?.joint(.middleFingerKnuckle),
+            let rightHandMiddleKnuckle = rightHandAnchor.handSkeleton?.joint(.middleFingerKnuckle),
+            
+            let leftHandMiddleTip = leftHandAnchor.handSkeleton?.joint(.middleFingerTip),
+            let rightHandMiddleTip = rightHandAnchor.handSkeleton?.joint(.middleFingerTip),
+            //Ring Finger
+            let leftHandRingKnuckle = leftHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
+            let rightHandMiddleKnuckle = rightHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
+            
+            let leftHandRingTip = leftHandAnchor.handSkeleton?.joint(.ringFingerTip),
+            let rightHandRingTip = rightHandAnchor.handSkeleton?.joint(.ringFingerTip),
+            //Little Finger
+            let leftHandLittleKnuckle = leftHandAnchor.handSkeleton?.joint(.littleFingerKnuckle),
+            let rightHandLittleKnuckle = rightHandAnchor.handSkeleton?.joint(.littleFingerKnuckle),
+            
+            let leftHandLittleTip = leftHandAnchor.handSkeleton?.joint(.littleFingerTip),
+            let rightHandLittleTip = rightHandAnchor.handSkeleton?.joint(.littleFingerTip),
+            //Thumb
             let leftHandThumbKnuckle = leftHandAnchor.handSkeleton?.joint(.thumbKnuckle),
-            let leftHandThumbTipPosition = leftHandAnchor.handSkeleton?.joint(.thumbTip),
-            let leftHandIndexFingerTip = leftHandAnchor.handSkeleton?.joint(.indexFingerTip),
             let rightHandThumbKnuckle = rightHandAnchor.handSkeleton?.joint(.thumbKnuckle),
+
+            let leftHandThumbTipPosition = leftHandAnchor.handSkeleton?.joint(.thumbTip),
             let rightHandThumbTipPosition = rightHandAnchor.handSkeleton?.joint(.thumbTip),
+            
+            //Index
             let rightHandIndexFingerTip = rightHandAnchor.handSkeleton?.joint(.indexFingerTip),
+            let leftHandIndexFingerTip = leftHandAnchor.handSkeleton?.joint(.indexFingerTip),
+            
             leftHandIndexFingerTip.isTracked && leftHandThumbTipPosition.isTracked &&
                 rightHandIndexFingerTip.isTracked && rightHandThumbTipPosition.isTracked &&
                 leftHandThumbKnuckle.isTracked && rightHandThumbKnuckle.isTracked
