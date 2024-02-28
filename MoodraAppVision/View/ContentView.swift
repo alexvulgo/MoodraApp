@@ -41,7 +41,7 @@ struct ContentView: View {
                         }
                 }
                 
-                NavigationLink(destination: SessionView()) {
+                NavigationLink(destination: MudraSelectionView()) {
                     Text("Session")
                         .onTapGesture {
                             showImmersiveSpace = true

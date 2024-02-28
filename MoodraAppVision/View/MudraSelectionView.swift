@@ -23,6 +23,7 @@ struct MudraSelectionView: View {
             
             VStack() {
                 
+                
                 ZStack {
                     //Mudra Card Scrolling
                     ForEach(0..<mudra.mudras.count, id: \.self) { index in
@@ -38,23 +39,13 @@ struct MudraSelectionView: View {
                                 Text(mudra.mudras[index].name)
                             }
                         } //END OF CARD ZSTACK
-                        .frame(width: 240, height: 300)
+                        .frame(width: 280, height: 400)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
                         .scaleEffect(currentIndex == index ? 1.2 : 1.0)
-                        .offset(x: CGFloat(index - currentIndex)*250 + dragOffset, y:0)
-                
-                        //GLASS EFFECT
-                        .background {
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
+                        .offset(x: CGFloat(index - currentIndex)*300 + dragOffset, y:0)
+                       
                     }
-                }
+                }.padding(.vertical,10)
                 .gesture(
                     DragGesture()
                         .onEnded({ value in
@@ -73,6 +64,10 @@ struct MudraSelectionView: View {
                         })
                     
                     )
+                
+                
+                
+                
             } .navigationTitle("Choose mudras")
             
         }
