@@ -95,7 +95,7 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             
             //Ring Finger
             let leftHandRingKnuckle = leftHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
-            let rightHandMiddleKnuckle = rightHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
+            let rightHandRingKnuckle = rightHandAnchor.handSkeleton?.joint(.ringFingerKnuckle),
             
             let leftHandRingTip = leftHandAnchor.handSkeleton?.joint(.ringFingerTip),
             let rightHandRingTip = rightHandAnchor.handSkeleton?.joint(.ringFingerTip),
@@ -124,6 +124,9 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             let rightHandThumbIntermediateTip = rightHandAnchor.handSkeleton?.joint(.thumbIntermediateTip),
             
             //Index
+            let leftHandIndexKnuckle = leftHandAnchor.handSkeleton?.joint(.indexFingerKnuckle),
+            let rightHandIndexKnuckle = rightHandAnchor.handSkeleton?.joint(.indexFingerKnuckle),
+            
             let rightHandIndexFingerTip = rightHandAnchor.handSkeleton?.joint(.indexFingerTip),
             let leftHandIndexFingerTip = leftHandAnchor.handSkeleton?.joint(.indexFingerTip),
             
@@ -131,7 +134,7 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             let rightHandIndexIntermediateTip = rightHandAnchor.handSkeleton?.joint(.indexFingerIntermediateTip),
             
                 
-            
+            //Tracking check
             leftHandIndexFingerTip.isTracked && leftHandThumbTipPosition.isTracked &&
                 rightHandIndexFingerTip.isTracked && rightHandThumbTipPosition.isTracked &&
                 leftHandThumbKnuckle.isTracked && rightHandThumbKnuckle.isTracked
@@ -140,27 +143,99 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         }
         
         // Get the position of all joints in world coordinates.
+        
+        //Left Hand Knuckles
         let originFromLeftHandThumbKnuckleTransform = matrix_multiply(
-            leftHandAnchor.originFromAnchorTransform, leftHandThumbKnuckle.anchorFromJointTransform
-        ).columns.3.xyz
+            leftHandAnchor.originFromAnchorTransform, leftHandThumbKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromLeftHandIndexKnuckleTransform = matrix_multiply(leftHandAnchor.originFromAnchorTransform, leftHandIndexKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromLeftHandMiddleKnuckleTransform = matrix_multiply(leftHandAnchor.originFromAnchorTransform, leftHandMiddleKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromLeftHandRingKnuckleTransform = matrix_multiply(leftHandAnchor.originFromAnchorTransform, leftHandRingKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromLeftHandLittleKnuckleTransform = matrix_multiply(leftHandAnchor.originFromAnchorTransform, leftHandLittleKnuckle.anchorFromJointTransform).columns.3.xyz
+        
+        //Left Hand Tips
         let originFromLeftHandThumbTipTransform = matrix_multiply(
             leftHandAnchor.originFromAnchorTransform, leftHandThumbTipPosition.anchorFromJointTransform
         ).columns.3.xyz
         let originFromLeftHandIndexFingerTipTransform = matrix_multiply(
             leftHandAnchor.originFromAnchorTransform, leftHandIndexFingerTip.anchorFromJointTransform
         ).columns.3.xyz
-        let originFromRightHandThumbKnuckleTransform = matrix_multiply(
-            rightHandAnchor.originFromAnchorTransform, rightHandThumbKnuckle.anchorFromJointTransform
+        let originFromLeftHandMiddleFingerTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandMiddleTip.anchorFromJointTransform
         ).columns.3.xyz
+        let originFromLeftHandRingFingerTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandRingTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromLeftHandLittleFingerTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandLittleTip.anchorFromJointTransform
+        ).columns.3.xyz
+        
+        //Left Hand Intermediate Tips
+        let originFromLeftHandThumbIntermediateTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandThumpIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromLeftHandIndexFingerIntermediateTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandIndexIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromLeftHandMiddleIntermediateTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandMiddleIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromLeftHandRingIntermediateTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandRingIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromLeftHandLittleIntermediateTipTransform = matrix_multiply(
+            leftHandAnchor.originFromAnchorTransform, leftHandLittleIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        
+        
+        //Right Hand Knuckles
+        let originFromRightHandThumbKnuckleTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandThumbKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromRightHandIndexKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandIndexKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromRightHandMiddleKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandMiddleKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromRightHandRingKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandRingKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromRigtHandLittleKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandLittleKnuckle.anchorFromJointTransform).columns.3.xyz
+        
+        //Right Hand Tips
         let originFromRightHandThumbTipTransform = matrix_multiply(
             rightHandAnchor.originFromAnchorTransform, rightHandThumbTipPosition.anchorFromJointTransform
         ).columns.3.xyz
         let originFromRightHandIndexFingerTipTransform = matrix_multiply(
             rightHandAnchor.originFromAnchorTransform, rightHandIndexFingerTip.anchorFromJointTransform
         ).columns.3.xyz
+        let originFromRightHandMiddleFingerTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandMiddleTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandRingFingerTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandRingTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandLittleFingerTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandLittleTip.anchorFromJointTransform
+        ).columns.3.xyz
         
+        //Right Hand Intermediate Tips
+        let originFromRightHandThumbIntermediateTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandThumbIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandIndexIntermediateTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandIndexIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandMiddleIntermediateTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandMiddleIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandRingIntermediateTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandRingIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        let originFromRightHandLittleIntermediateTipTransform = matrix_multiply(
+            rightHandAnchor.originFromAnchorTransform, rightHandLittleIntermediateTip.anchorFromJointTransform
+        ).columns.3.xyz
+        
+        
+        //Old Distances
         let indexFingersDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromRightHandIndexFingerTipTransform)
         let thumbsDistance = distance(originFromLeftHandThumbTipTransform, originFromRightHandThumbTipTransform)
+        
+        //New Distances
+        
         
         // Heart gesture detection is true when the distance between the index finger tips centers
         // and the distance between the thumb tip centers is each less than four centimeters.
