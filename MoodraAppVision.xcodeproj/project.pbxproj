@@ -19,12 +19,6 @@
 		63C885722B87556A00C33BFD /* MudraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885712B87556A00C33BFD /* MudraViewModel.swift */; };
 		63D4025E2B8C70AE002CD941 /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4025D2B8C70AE002CD941 /* DestinationView.swift */; };
 		63FEE7222B8F24F300908006 /* HandTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7212B8F24F300908006 /* HandTerms.swift */; };
-		63FEE7242B8F253E00908006 /* ApprovalGestureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7232B8F253E00908006 /* ApprovalGestureProcessor.swift */; };
-		63FEE7272B8F258D00908006 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7262B8F258D00908006 /* CameraViewController.swift */; };
-		63FEE7292B8F25BE00908006 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7282B8F25BE00908006 /* RecorderViewController.swift */; };
-		63FEE72B2B8F25E800908006 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE72A2B8F25E800908006 /* Recorder.swift */; };
-		63FEE72D2B8F261700908006 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE72C2B8F261700908006 /* CameraView.swift */; };
-		63FEE72F2B8F263A00908006 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE72E2B8F263A00908006 /* FileManager+Extensions.swift */; };
 		63FEE7342B9082CF00908006 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7332B9082CF00908006 /* Testing.swift */; };
 		63FEE7362B90862C00908006 /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7352B90862C00908006 /* HandModel.swift */; };
 		FA4C389A2B84B250000852DD /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = FA4C38992B84B250000852DD /* RealityKitContent */; };
@@ -50,12 +44,6 @@
 		63C885712B87556A00C33BFD /* MudraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraViewModel.swift; sourceTree = "<group>"; };
 		63D4025D2B8C70AE002CD941 /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DestinationView.swift; path = ../DestinationView.swift; sourceTree = "<group>"; };
 		63FEE7212B8F24F300908006 /* HandTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTerms.swift; sourceTree = "<group>"; };
-		63FEE7232B8F253E00908006 /* ApprovalGestureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalGestureProcessor.swift; sourceTree = "<group>"; };
-		63FEE7262B8F258D00908006 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		63FEE7282B8F25BE00908006 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
-		63FEE72A2B8F25E800908006 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
-		63FEE72C2B8F261700908006 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		63FEE72E2B8F263A00908006 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		63FEE7332B9082CF00908006 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		63FEE7352B90862C00908006 /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
 		FA4C38942B84B250000852DD /* MoodraAppVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodraAppVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,13 +124,7 @@
 		63FEE7302B8F27F200908006 /* HandTrackingVision */ = {
 			isa = PBXGroup;
 			children = (
-				63FEE7262B8F258D00908006 /* CameraViewController.swift */,
-				63FEE7282B8F25BE00908006 /* RecorderViewController.swift */,
-				63FEE72A2B8F25E800908006 /* Recorder.swift */,
-				63FEE72E2B8F263A00908006 /* FileManager+Extensions.swift */,
-				63FEE72C2B8F261700908006 /* CameraView.swift */,
 				63FEE7212B8F24F300908006 /* HandTerms.swift */,
-				63FEE7232B8F253E00908006 /* ApprovalGestureProcessor.swift */,
 			);
 			path = HandTrackingVision;
 			sourceTree = "<group>";
@@ -272,10 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63FEE7292B8F25BE00908006 /* RecorderViewController.swift in Sources */,
 				63FEE7222B8F24F300908006 /* HandTerms.swift in Sources */,
-				63FEE7242B8F253E00908006 /* ApprovalGestureProcessor.swift in Sources */,
-				63FEE72F2B8F263A00908006 /* FileManager+Extensions.swift in Sources */,
 				63C8856A2B87519400C33BFD /* HandGestureModel.swift in Sources */,
 				63C885602B874D3D00C33BFD /* TimerView.swift in Sources */,
 				63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */,
@@ -288,14 +267,11 @@
 				63C8855E2B874CF500C33BFD /* TutorialView.swift in Sources */,
 				63C885682B874EA500C33BFD /* MudraView.swift in Sources */,
 				63C885722B87556A00C33BFD /* MudraViewModel.swift in Sources */,
-				63FEE72D2B8F261700908006 /* CameraView.swift in Sources */,
-				63FEE72B2B8F25E800908006 /* Recorder.swift in Sources */,
 				63D4025E2B8C70AE002CD941 /* DestinationView.swift in Sources */,
 				63C8856C2B87520B00C33BFD /* Extensions.swift in Sources */,
 				63FEE7342B9082CF00908006 /* Testing.swift in Sources */,
 				63C8855C2B873EEA00C33BFD /* SessionView.swift in Sources */,
 				63FEE7362B90862C00908006 /* HandModel.swift in Sources */,
-				63FEE7272B8F258D00908006 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
