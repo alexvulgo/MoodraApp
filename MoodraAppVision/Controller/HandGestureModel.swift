@@ -193,7 +193,7 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         let originFromRightHandIndexKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandIndexKnuckle.anchorFromJointTransform).columns.3.xyz
         let originFromRightHandMiddleKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandMiddleKnuckle.anchorFromJointTransform).columns.3.xyz
         let originFromRightHandRingKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandRingKnuckle.anchorFromJointTransform).columns.3.xyz
-        let originFromRigtHandLittleKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandLittleKnuckle.anchorFromJointTransform).columns.3.xyz
+        let originFromRightHandLittleKnuckleTransform = matrix_multiply(rightHandAnchor.originFromAnchorTransform, rightHandLittleKnuckle.anchorFromJointTransform).columns.3.xyz
         
         //Right Hand Tips
         let originFromRightHandThumbTipTransform = matrix_multiply(
@@ -229,12 +229,52 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             rightHandAnchor.originFromAnchorTransform, rightHandLittleIntermediateTip.anchorFromJointTransform
         ).columns.3.xyz
         
+        //Reference
+        
+        
         
         //Old Distances
         let indexFingersDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromRightHandIndexFingerTipTransform)
         let thumbsDistance = distance(originFromLeftHandThumbTipTransform, originFromRightHandThumbTipTransform)
         
-        //New Distances
+        //MARK: New Distances
+        //In order to understand if one finger is extended or not, we need to compute the
+        //distance between the finger tip and the wrist,
+        //         and the intermediate tip and the wrist.
+        //IF intermediate > tip, the finger is extended
+        
+        //Right Hand
+        
+        let rightThumbTipDistance = distance(originFromRightHandThumbTipTransform, originFromRightHandThumbKnuckleTransform)
+        let rightThumbIntermediateTipDistance = distance(originFromRightHandThumbIntermediateTipTransform, originFromRightHandThumbKnuckleTransform)
+        
+        let rightIndexTipDistance = distance(originFromRightHandIndexFingerTipTransform, originFromRightHandIndexKnuckleTransform)
+        let rightIndexIntermediateTipDistance = distance(originFromRightHandIndexIntermediateTipTransform, originFromRightHandIndexKnuckleTransform)
+        
+        let rightMiddleTipDistance = distance(originFromRightHandMiddleFingerTipTransform, originFromRightHandIndexKnuckleTransform)
+        let rightMiddleIntermediateTipDistance = distance(originFromRightHandMiddleIntermediateTipTransform, originFromRightHandMiddleKnuckleTransform)
+        
+        let rightRingTipDistance = distance(originFromRightHandRingFingerTipTransform, originFromRightHandRingKnuckleTransform)
+        let rightRingIntermediateTipDistance = distance(originFromRightHandRingIntermediateTipTransform, originFromRightHandRingKnuckleTransform)
+        
+        let rightLittleTipDistance = distance(originFromRightHandLittleFingerTipTransform, originFromRightHandLittleKnuckleTransform)
+        let rightLittleIntermediateTipDistance = distance(originFromRightHandLittleIntermediateTipTransform, originFromRightHandLittleKnuckleTransform)
+        
+        // Left Hand
+        let leftThumbTipDistance = distance(originFromLeftHandThumbTipTransform, originFromLeftHandThumbKnuckleTransform)
+        let leftThumbIntermediateTipDistance = distance(originFromLeftHandThumbIntermediateTipTransform, originFromLeftHandThumbKnuckleTransform)
+        
+        let leftIndexTipDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromLeftHandIndexKnuckleTransform)
+        let leftIndexIntermediateTipDistance = distance(originFromLeftHandIndexFingerIntermediateTipTransform, originFromLeftHandIndexKnuckleTransform)
+        
+        let leftMiddleTipDistance = distance(originFromLeftHandMiddleFingerTipTransform, originFromLeftHandIndexKnuckleTransform)
+        let leftMiddleIntermediateTipDistance = distance(originFromLeftHandMiddleIntermediateTipTransform, originFromLeftHandMiddleKnuckleTransform)
+        
+        let leftRingTipDistance = distance(originFromLeftHandRingFingerTipTransform, originFromLeftHandRingKnuckleTransform)
+        let leftRingIntermediateTipDistance = distance(originFromLeftHandRingIntermediateTipTransform, originFromLeftHandRingKnuckleTransform)
+        
+        let leftLittleTipDistance = distance(originFromLeftHandLittleFingerTipTransform, originFromLeftHandLittleKnuckleTransform)
+        let leftLittleIntermediateTipDistance = distance(originFromLeftHandLittleIntermediateTipTransform, originFromLeftHandLittleKnuckleTransform)
         
         
         // Heart gesture detection is true when the distance between the index finger tips centers
