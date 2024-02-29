@@ -4,6 +4,7 @@
 //
 //  Created by Matteo Perotta on 28/02/24.
 //
+/*
 
 import CoreGraphics
 
@@ -128,3 +129,5 @@ let defaultHand = Fingers(thumb: Thumb(TIP: .zero, IP: .zero, MP: .zero, CMC: .z
                           ring: Finger(TIP: .zero, DIP: .zero, PIP: .zero, MCP: .zero),
                           little: Finger(TIP: .zero, DIP: .zero, PIP: .zero, MCP: .zero),
                           wrist: .zero)
+*/
+

@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A model that contains up-to-date hand coordinate information.
 @MainActor
-class HeartGestureModel: ObservableObject, @unchecked Sendable {
+class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
     var leftHand = HandModel.leftHand
     var rightHand = HandModel.rightHand
     
@@ -76,7 +76,8 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
     ///     * The Y axis is parallel to the vector from right thumb tip to right index finger tip.
     ///  * `nil` if either of the hands isn't tracked or the user isn't performing a heart gesture
     ///  (the index fingers and thumbs of both hands need to touch).
-    func computeTransformOfUserPerformedHeartGesture() -> simd_float4x4? {
+    ///
+    func computeTransformOfHandGestures() -> simd_float4x4? {
         // Get the latest hand anchors, return false if either of them isn't tracked.
         guard let leftHandAnchor = latestHandTracking.left,
               let rightHandAnchor = latestHandTracking.right,
@@ -315,10 +316,6 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             rightHand.little.isExtended = true
         }
     
-        
-        
-        
-        
     
         // Compute a position in the middle of the heart gesture.
         let halfway = (originFromRightHandIndexFingerTipTransform - originFromLeftHandThumbTipTransform) / 2
