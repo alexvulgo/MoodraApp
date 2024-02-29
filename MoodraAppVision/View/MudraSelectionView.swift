@@ -22,7 +22,16 @@ struct MudraSelectionView: View {
     
     @State var selectedMudra : [Mudra] = []
     @State var selectedMudraName : [String] = []
-    var isSelectable : Bool { selectedMudraName.count < 3 || selectedMudraName.contains(mudra.mudras[currentIndex].name)}
+    var isSelectable : Bool
+    { selectedMudraName.count < 3 || selectedMudraName.contains(mudra.mudras[currentIndex].name)}
+    
+    //Starting Session
+    
+    //Enabling start button
+    var ready : Bool { selectedMudraName.count < 3}
+    
+    //selected mudras quantity
+    @State var mudraNumber = 0
     
     
     var body: some View {
@@ -55,17 +64,19 @@ struct MudraSelectionView: View {
                             if(currentIndex == index) {
                                 if selectedMudraName.contains(mudra.mudras[index].name) {
                                     selectedMudraName.removeAll(where: { $0 == mudra.mudras[index].name})
-                                    
+                                    mudraNumber = mudraNumber-1
                                     
                                 }
                                 
                                 
                                 else if isSelectable {
                                     selectedMudraName.append(mudra.mudras[index].name)
+                                    mudraNumber = mudraNumber+1
                                 }
                             }
+                            
                         }
-                        .frame(width: 280, height: 400)
+                        .frame(width: 240, height: 300)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
                         .scaleEffect(currentIndex == index ? 1.2 : 1.0)
                         .offset(x: CGFloat(index - currentIndex)*320 + dragOffset, y:0)
@@ -91,16 +102,27 @@ struct MudraSelectionView: View {
                         
                     )
                 
-                Text("1/3")
+                Text("\(mudraNumber)/3")
                     .bold()
                     .padding(.vertical,30)
                 
+                Button(action: {
+                    
+                    
+                    
+                }, label: {
+                    Text("Start")
+                    //.foregroundColor(.white)
+                        .padding()
+                    
+                }).disabled(ready)
                 
-            }
+                
+            }.frame(height: 1000)
             
             
             
-            .navigationTitle("Choose mudras")
+                .navigationTitle("Choose mudras")
         }
     }
 }

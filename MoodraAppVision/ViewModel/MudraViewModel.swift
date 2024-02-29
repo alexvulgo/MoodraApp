@@ -14,20 +14,28 @@ class MudraViewModel {
         
     Mudra(images: ["Hamsasya", "Hamsasya"],
           instructions: ["default-mudra", "default-mudra2"],
-          name: "Mudra",
+          name: "Mudra 1",
           info: "Info"),
     
     Mudra(images: ["Alapadma", "Alapadma"],
           instructions: ["default-mudra", "default-mudra2"],
-          name: "Mudra 1",
+          name: "Mudra 2",
           info: "Info"),
     Mudra(images: ["Hamsasya", "Hamsasya"],
           instructions: ["default-mudra", "default-mudra2"],
-          name: "Mudra 2",
+          name: "Mudra 3",
           info: "Info"),
     Mudra(images: ["Alapadma", "Alapadma"],
           instructions: ["default-mudra", "default-mudra2"],
-          name: "Mudra 3",
+          name: "Mudra 4",
+          info: "Info"),
+    Mudra(images: ["Alapadma", "Alapadma"],
+          instructions: ["default-mudra", "default-mudra2"],
+          name: "Mudra 5",
+          info: "Info"),
+    Mudra(images: ["Alapadma", "Alapadma"],
+          instructions: ["default-mudra", "default-mudra2"],
+          name: "Mudra 6",
           info: "Info")
     
     ]
