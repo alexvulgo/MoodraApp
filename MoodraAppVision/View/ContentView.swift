@@ -26,7 +26,7 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     func dismissWindow() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             dismiss()
         }
     }
@@ -56,16 +56,25 @@ struct ContentView: View {
                     .padding(.top, 50)
                  */
                 
-                NavigationLink(destination: MudraSelectionView(tutorialMode: true)) {
+                /*NavigationLink(destination: MudraSelectionView(tutorialMode: true)) {
                    Text("Learn Mudras")
-                        
+                }*/
+                
+                Button("Learn Mudras"){
+                    openWindow(id : "mudraSelectionTutorial")
+                    dismissWindow()
                 }
                 
-                NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
-                    Text("Meditate")
-                        
+                Button("Meditate"){
+                    openWindow(id : "mudraSelectionSession")
+                    dismissWindow()
                 }
                 .navigationBarTitle("Welcome")
+                
+               /* NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
+                    Text("Meditate")
+                }
+                .navigationBarTitle("Welcome")*/
             }
                
         }

@@ -20,7 +20,7 @@ struct MudraSelectionView: View {
     
     //Mudra selection
     
-    @State var selectedMudra : [Mudra] = []
+    @Binding var selectedMudra : [Mudra]
     @State var selectedMudraName : [String] = []
     var isSelectable : Bool
     { selectedMudraName.count < 3 || selectedMudraName.contains(mudra.mudras[currentIndex].name)}
@@ -38,10 +38,38 @@ struct MudraSelectionView: View {
     
     @State var title : String = ""
     
+    //Dismiss the view or open the next one
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismiss) private var dismiss
+    
+    func dismissWindow() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+            dismiss()
+        }
+    }
     
     var body: some View {
         
         NavigationStack {
+            
+            HStack(alignment: .top) {
+                
+                Button {
+                    openWindow(id: "main")
+                    dismissWindow()
+                } label: {
+                    Label("Back", systemImage: "chevron.backward")
+                        .labelStyle(.iconOnly)
+                }
+                .offset(y: -8)
+                
+                Text(tutorialMode == true ? "Learn Mudras" : "Meditate")
+                    .font(.title)
+                
+                Spacer()
+                
+            }
+            .padding()
             
             VStack() {
                 
@@ -115,23 +143,26 @@ struct MudraSelectionView: View {
                 
              
                 //if user is in learn mudras
-                if(tutorialMode){ NavigationLink(destination: TutorialView()){
-                    Text("Start")
-                        .padding()
-                }.disabled(ready)
-                    
-                    
+                if(tutorialMode){ 
+                    Button("Start"){
+                        openWindow(id: "tutorial")
+                        dismissWindow()
+                        dismissWindow()
+                }
+                .padding()
+                .disabled(ready)
                     //if user is in meditate
                 } else {
-                    NavigationLink(destination: SessionView()){
-                        Text("Start")
-                            .padding()
-                    }.disabled(ready)
-                    
+                    Button("Start"){
+                        openWindow(id: "session")
+                        dismissWindow()
+                        dismissWindow()
+                }
+                .padding()
+                .disabled(ready)
                 }
             }
-            
-            .navigationTitle(tutorialMode == true ? "Learn Mudras" : "Meditate")
+            //.navigationTitle(tutorialMode == true ? "Learn Mudras" : "Meditate")
         }
     }
 }
@@ -139,6 +170,6 @@ struct MudraSelectionView: View {
 
 
 
-#Preview {
+/*#Preview {
     MudraSelectionView(mudra: MudraViewModel(), tutorialMode: true)
-}
+}*/
