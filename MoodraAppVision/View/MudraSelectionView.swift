@@ -33,6 +33,11 @@ struct MudraSelectionView: View {
     //selected mudras quantity
     @State var mudraNumber = 0
     
+    //Tutorial or session mode
+    @State var tutorialMode: Bool
+    
+    @State var title : String = ""
+    
     
     var body: some View {
         
@@ -64,6 +69,7 @@ struct MudraSelectionView: View {
                             if(currentIndex == index) {
                                 if selectedMudraName.contains(mudra.mudras[index].name) {
                                     selectedMudraName.removeAll(where: { $0 == mudra.mudras[index].name})
+                                    selectedMudra.removeAll(where: { $0 == mudra.mudras[index]})
                                     mudraNumber = mudraNumber-1
                                     
                                 }
@@ -71,6 +77,7 @@ struct MudraSelectionView: View {
                                 
                                 else if isSelectable {
                                     selectedMudraName.append(mudra.mudras[index].name)
+                                    selectedMudra.append(mudra.mudras[index])
                                     mudraNumber = mudraNumber+1
                                 }
                             }
@@ -106,23 +113,25 @@ struct MudraSelectionView: View {
                     .bold()
                     .padding(.vertical,30)
                 
-                Button(action: {
-                    
-                    
-                    
-                }, label: {
+             
+                //if user is in learn mudras
+                if(tutorialMode){ NavigationLink(destination: TutorialView()){
                     Text("Start")
-                    //.foregroundColor(.white)
                         .padding()
+                }.disabled(ready)
                     
-                }).disabled(ready)
-                
-                
-            }.frame(height: 1000)
+                    
+                    //if user is in meditate
+                } else {
+                    NavigationLink(destination: SessionView()){
+                        Text("Start")
+                            .padding()
+                    }.disabled(ready)
+                    
+                }
+            }
             
-            
-            
-                .navigationTitle("Choose mudras")
+            .navigationTitle(tutorialMode == true ? "Learn Mudras" : "Meditate")
         }
     }
 }
@@ -131,5 +140,5 @@ struct MudraSelectionView: View {
 
 
 #Preview {
-    MudraSelectionView(mudra: MudraViewModel())
+    MudraSelectionView(mudra: MudraViewModel(), tutorialMode: true)
 }

@@ -56,13 +56,13 @@ struct ContentView: View {
                     .padding(.top, 50)
                  */
                 
-                NavigationLink(destination: TutorialView()) {
-                   Text("Tutorial")
+                NavigationLink(destination: MudraSelectionView(tutorialMode: true)) {
+                   Text("Learn Mudras")
                         
                 }
                 
-                NavigationLink(destination: MudraSelectionView()) {
-                    Text("Session")
+                NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
+                    Text("Meditate")
                         
                 }
                 .navigationBarTitle("Welcome")
