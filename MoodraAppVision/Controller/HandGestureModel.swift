@@ -10,6 +10,9 @@ import SwiftUI
 /// A model that contains up-to-date hand coordinate information.
 @MainActor
 class HeartGestureModel: ObservableObject, @unchecked Sendable {
+    var leftHand = HandModel()
+    var rightHand = HandModel()
+    
     let session = ARKitSession()
     var handTracking = HandTrackingProvider()
     @Published var latestHandTracking: HandsUpdates = .init(left: nil, right: nil)
@@ -275,6 +278,50 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         
         let leftLittleTipDistance = distance(originFromLeftHandLittleFingerTipTransform, originFromLeftHandLittleKnuckleTransform)
         let leftLittleIntermediateTipDistance = distance(originFromLeftHandLittleIntermediateTipTransform, originFromLeftHandLittleKnuckleTransform)
+        
+        //Left Hand
+        if(leftThumbTipDistance <= leftThumbIntermediateTipDistance){
+            leftHand.thumb.isExtended = true
+        }
+        
+        if(leftIndexTipDistance <= leftIndexIntermediateTipDistance){
+            leftHand.index.isExtended = true
+        }
+        
+        if(leftMiddleTipDistance <= leftMiddleIntermediateTipDistance){
+            leftHand.middle.isExtended = true
+        }
+        
+        if(leftRingTipDistance <= leftRingIntermediateTipDistance){
+            leftHand.ring.isExtended = true
+        }
+        
+        if(leftLittleTipDistance <= leftLittleIntermediateTipDistance){
+            leftHand.little.isExtended = true
+        }
+        
+        //Right Hand
+        if(rightThumbTipDistance <= rightThumbIntermediateTipDistance){
+            rightHand.thumb.isExtended = true
+        }
+        
+        if(rightIndexTipDistance <= rightIndexIntermediateTipDistance){
+            rightHand.index.isExtended = true
+        }
+        
+        if(rightMiddleTipDistance <= rightMiddleIntermediateTipDistance){
+            rightHand.middle.isExtended = true
+        }
+        
+        if(rightRingTipDistance <= rightRingIntermediateTipDistance){
+            rightHand.ring.isExtended = true
+        }
+        
+        if(rightLittleTipDistance <= rightLittleIntermediateTipDistance){
+            rightHand.little.isExtended = true
+        }
+    
+        
         
         
         // Heart gesture detection is true when the distance between the index finger tips centers

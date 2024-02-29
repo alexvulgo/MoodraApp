@@ -7,20 +7,25 @@
 
 import Foundation
 /*
- let leftThumbTipDistance = distance(originFromLeftHandThumbTipTransform, originFromLeftHandThumbKnuckleTransform)
- let leftThumbIntermediateTipDistance = distance(originFromLeftHandThumbIntermediateTipTransform, originFromleftHandThumbKnuckleTransform)
+ if(rightThumbTipDistance <= rightThumbIntermediateTipDistance){
+ rightHand.thumb.isExtended = true
+ }
  
- let leftIndexTipDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromLeftHandIndexKnuckleTransform)
- let leftIndexIntermediateTipDistance = distance(originFromleftHandIndexIntermediateTipTransform, originFromleftHandIndexKnuckleTransform)
+ if(rightIndexTipDistance <= rightIndexIntermediateTipDistance){
+ rightHand.index.isExtended = true
+ }
  
- let leftMiddleTipDistance = distance(originFromleftHandMiddleFingerTipTransform, originFromleftHandIndexKnuckleTransform)
- let leftMiddleIntermediateTipDistance = distance(originFromleftHandMiddleIntermediateTipTransform, originFromleftHandMiddleKnuckleTransform)
+ if(rightMiddleTipDistance <= rightMiddleIntermediateTipDistance){
+ rightHand.middle.isExtended = true
+ }
  
- let leftRingTipDistance = distance(originFromleftHandRingFingerTipTransform, originFromleftHandRingKnuckleTransform)
- let leftRingIntermediateTipDistance = distance(originFromleftHandRingIntermediateTipTransform, originFromleftHandRingKnuckleTransform)
+ if(rightRingTipDistance <= rightRingIntermediateTipDistance){
+ rightHand.ring.isExtended = true
+ }
  
- let leftLittleTipDistance = distance(originFromleftHandLittleFingerTipTransform, originFromleftHandLittleKnuckleTransform)
- let leftLittleIntermediateTipDistance = distance(originFromleftHandLittleIntermediateTipTransform, originFromleftHandLittleKnuckleTransform)
+ if(rightLittleTipDistance <= rightLittleIntermediateTipDistance){
+ rightHand.little.isExtended = true
+ }
  
 
  */

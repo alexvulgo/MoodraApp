@@ -27,6 +27,14 @@ class HandModel {
     var ringIntermediateTipKnuckleDistance = 30.0
     var littleIntermediateTipKnuckleDistance = 30.0
     
+    convenience init() {
+        self.thumb = FingerModel()
+        self.index = FingerModel()
+        self.middle = FingerModel()
+        self.ring = FingerModel()
+        self.little = FingerModel()
+    }
+    
     init(thumb: FingerModel, index: FingerModel, middle: FingerModel, ring: FingerModel, little: FingerModel) {
         self.thumb = thumb
         self.index = index
