@@ -111,14 +111,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		63FEE7252B8F257A00908006 /* Controller */ = {
+		63FEE7252B8F257A00908006 /* HandTracking */ = {
 			isa = PBXGroup;
 			children = (
 				63C885692B87519400C33BFD /* HandGestureModel.swift */,
 				63FEE7352B90862C00908006 /* HandModel.swift */,
 				63FEE7332B9082CF00908006 /* Testing.swift */,
 			);
-			path = Controller;
+			path = HandTracking;
 			sourceTree = "<group>";
 		};
 		63FEE7302B8F27F200908006 /* HandTrackingVision */ = {
@@ -149,9 +149,9 @@
 		FA4C38962B84B250000852DD /* MoodraAppVision */ = {
 			isa = PBXGroup;
 			children = (
-				63FEE7302B8F27F200908006 /* HandTrackingVision */,
-				63FEE7252B8F257A00908006 /* Controller */,
 				FA4C389B2B84B250000852DD /* MoodraAppVisionApp.swift */,
+				63FEE7302B8F27F200908006 /* HandTrackingVision */,
+				63FEE7252B8F257A00908006 /* HandTracking */,
 				63C885702B87555D00C33BFD /* ViewModel */,
 				63C8856D2B87545400C33BFD /* Model */,
 				63C885662B874E3800C33BFD /* Utility */,
