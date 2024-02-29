@@ -10,8 +10,8 @@ import SwiftUI
 /// A model that contains up-to-date hand coordinate information.
 @MainActor
 class HeartGestureModel: ObservableObject, @unchecked Sendable {
-    var leftHand = HandModel()
-    var rightHand = HandModel()
+    var leftHand = HandModel.leftHand
+    var rightHand = HandModel.rightHand
     
     let session = ARKitSession()
     var handTracking = HandTrackingProvider()
@@ -232,15 +232,8 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
             rightHandAnchor.originFromAnchorTransform, rightHandLittleIntermediateTip.anchorFromJointTransform
         ).columns.3.xyz
         
-        //Reference
-        
-        
-        
-        //Old Distances
-        let indexFingersDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromRightHandIndexFingerTipTransform)
-        let thumbsDistance = distance(originFromLeftHandThumbTipTransform, originFromRightHandThumbTipTransform)
-        
-        //MARK: New Distances
+      
+        //MARK: Calculate Distances
         //In order to understand if one finger is extended or not, we need to compute the
         //distance between the finger tip and the wrist,
         //         and the intermediate tip and the wrist.
@@ -279,6 +272,7 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         let leftLittleTipDistance = distance(originFromLeftHandLittleFingerTipTransform, originFromLeftHandLittleKnuckleTransform)
         let leftLittleIntermediateTipDistance = distance(originFromLeftHandLittleIntermediateTipTransform, originFromLeftHandLittleKnuckleTransform)
         
+        //Let's save the data into the hand model
         //Left Hand
         if(leftThumbTipDistance <= leftThumbIntermediateTipDistance){
             leftHand.thumb.isExtended = true
@@ -324,13 +318,8 @@ class HeartGestureModel: ObservableObject, @unchecked Sendable {
         
         
         
-        // Heart gesture detection is true when the distance between the index finger tips centers
-        // and the distance between the thumb tip centers is each less than four centimeters.
-        let isHeartShapeGesture = indexFingersDistance < 0.04 && thumbsDistance < 0.04
-        if !isHeartShapeGesture {
-            return nil
-        }
         
+    
         // Compute a position in the middle of the heart gesture.
         let halfway = (originFromRightHandIndexFingerTipTransform - originFromLeftHandThumbTipTransform) / 2
         let heartMidpoint = originFromRightHandIndexFingerTipTransform - halfway

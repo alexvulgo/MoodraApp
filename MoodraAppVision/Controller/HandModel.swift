@@ -9,6 +9,9 @@ import Foundation
 
 
 class HandModel {
+    static let leftHand = HandModel()
+    static let rightHand = HandModel()
+    
     var thumb: FingerModel = FingerModel()
     var index: FingerModel = FingerModel()
     var middle: FingerModel = FingerModel()
@@ -28,19 +31,15 @@ class HandModel {
     var littleIntermediateTipKnuckleDistance = 30.0
     
     convenience init() {
+        self.init(thumb: FingerModel(), index: FingerModel(), middle: FingerModel(), ring: FingerModel(), little: FingerModel())
+    }
+    
+    init(thumb: FingerModel, index: FingerModel, middle: FingerModel, ring: FingerModel, little: FingerModel) {
         self.thumb = FingerModel()
         self.index = FingerModel()
         self.middle = FingerModel()
         self.ring = FingerModel()
         self.little = FingerModel()
-    }
-    
-    init(thumb: FingerModel, index: FingerModel, middle: FingerModel, ring: FingerModel, little: FingerModel) {
-        self.thumb = thumb
-        self.index = index
-        self.middle = middle
-        self.ring = ring
-        self.little = little
     }
     
 }
