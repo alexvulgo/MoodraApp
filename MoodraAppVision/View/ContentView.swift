@@ -42,13 +42,6 @@ struct ContentView: View {
                 Text("Moodra App")
                     .font(.largeTitle)
                 
-                Button("Open") {
-                    openWindow(id: "mini")
-                    dismissWindow()
-                   
-                }.task {
-                   
-                }
                 
                 /*
                 Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
