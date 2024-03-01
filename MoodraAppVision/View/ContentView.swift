@@ -33,15 +33,33 @@ struct ContentView: View {
 
     var body: some View {
     
-        
         NavigationStack{
             VStack {
-                Model3D(named: "Scene", bundle: realityKitContentBundle)
-                    .padding(.bottom, 50)
                 
-                Text("Moodra App")
-                    .font(.largeTitle)
+                ZStack{
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 222, height: 222)
+                   
+                    Image("Main")
+                        .resizable()
+                        .frame(width: 222, height: 222)
+                    
+                }
                 
+                VStack{
+                    
+                    Text("Moodra: Meditate with Mudras")
+                        .font(.system(size: 40))
+                        .bold()
+                        .frame(width: 860, height: 60)
+                    
+                    Text("Start your meditation session with mudras.")
+                        .font(.system(size: 32))
+                        .frame(width: 853, height: 20)
+                    
+                }
+                .padding()
                 
                 /*
                 Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
@@ -53,16 +71,27 @@ struct ContentView: View {
                    Text("Learn Mudras")
                 }*/
                 
-                Button("Learn Mudras"){
-                    openWindow(id : "mudraSelectionTutorial")
-                    dismissWindow()
+                VStack {
+                    Button("Learn Mudras"){
+                        openWindow(id : "mudraSelectionTutorial")
+                        dismissWindow()
+                    }
+                    .foregroundStyle(.black)
+                    .tint(.white)
+                    .frame(width: 177, height: 52)
+                    .padding(.bottom, 5)
+                    
+                    Button("Meditate"){
+                        openWindow(id : "mudraSelectionSession")
+                        dismissWindow()
+                    }
+                    .foregroundStyle(.black)
+                    .tint(.white)
+                    .frame(width: 132, height: 52)
                 }
+                .padding()
                 
-                Button("Meditate"){
-                    openWindow(id : "mudraSelectionSession")
-                    dismissWindow()
-                }
-                .navigationBarTitle("Welcome")
+                //.navigationBarTitle("Welcome")
                 
                /* NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
                     Text("Meditate")
