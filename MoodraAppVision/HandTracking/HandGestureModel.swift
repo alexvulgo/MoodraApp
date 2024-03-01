@@ -190,7 +190,6 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
             leftHandAnchor.originFromAnchorTransform, leftHandLittleIntermediateTip.anchorFromJointTransform
         ).columns.3.xyz
         
-        
         //Right Hand Knuckles
         let originFromRightHandThumbKnuckleTransform = matrix_multiply(
             rightHandAnchor.originFromAnchorTransform, rightHandThumbKnuckle.anchorFromJointTransform).columns.3.xyz
@@ -233,7 +232,6 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
             rightHandAnchor.originFromAnchorTransform, rightHandLittleIntermediateTip.anchorFromJointTransform
         ).columns.3.xyz
         
-      
         //MARK: Calculate Distances
         //In order to understand if one finger is extended or not, we need to compute the
         //distance between the finger tip and the wrist,

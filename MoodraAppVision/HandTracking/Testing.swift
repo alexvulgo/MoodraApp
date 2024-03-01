@@ -8,24 +8,26 @@
 import Foundation
 /*
  if(rightThumbTipDistance <= rightThumbIntermediateTipDistance){
- rightHand.thumb.isExtended = true
+ leftHand.thumb.isExtended = true
  }
  
  if(rightIndexTipDistance <= rightIndexIntermediateTipDistance){
- rightHand.index.isExtended = true
+ leftHand.index.isExtended = true
  }
  
  if(rightMiddleTipDistance <= rightMiddleIntermediateTipDistance){
- rightHand.middle.isExtended = true
+ leftHand.middle.isExtended = true
  }
  
  if(rightRingTipDistance <= rightRingIntermediateTipDistance){
- rightHand.ring.isExtended = true
+ leftHand.ring.isExtended = true
  }
  
  if(rightLittleTipDistance <= rightLittleIntermediateTipDistance){
- rightHand.little.isExtended = true
+ leftHand.little.isExtended = true
  }
+ 
+ !leftHand.thumb.isExtended && leftHand.index.isExtended && leftHand.middle.isExtended && leftHand.ring.isExtended && leftHand.little.isExtended
  
 
  */
