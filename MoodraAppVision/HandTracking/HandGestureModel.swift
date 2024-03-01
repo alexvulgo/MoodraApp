@@ -302,30 +302,5 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
         if(rightLittleTipDistance <= rightLittleIntermediateTipDistance){
             rightHand.little.isExtended = true
         }
-<<<<<<< Updated upstream
-=======
-    
-        
-        // Compute a position in the middle of the heart gesture.
-        let halfway = (originFromRightHandIndexFingerTipTransform - originFromLeftHandThumbTipTransform) / 2
-        let heartMidpoint = originFromRightHandIndexFingerTipTransform - halfway
-        
-        // Compute the vector from left thumb knuckle to right thumb knuckle and normalize (X axis).
-        let xAxis = normalize(originFromRightHandThumbKnuckleTransform - originFromLeftHandThumbKnuckleTransform)
-        
-        // Compute the vector from right thumb tip to right index finger tip and normalize (Y axis).
-        let yAxis = normalize(originFromRightHandIndexFingerTipTransform - originFromRightHandThumbTipTransform)
-        
-        let zAxis = normalize(cross(xAxis, yAxis))
-        
-        // Create the final transform for the heart gesture from the three axes and midpoint vector.
-        let heartMidpointWorldTransform = simd_matrix(
-            SIMD4(xAxis.x, xAxis.y, xAxis.z, 0),
-            SIMD4(yAxis.x, yAxis.y, yAxis.z, 0),
-            SIMD4(zAxis.x, zAxis.y, zAxis.z, 0),
-            SIMD4(heartMidpoint.x, heartMidpoint.y, heartMidpoint.z, 1)
-        )
-        return heartMidpointWorldTransform
->>>>>>> Stashed changes
     }
 }
