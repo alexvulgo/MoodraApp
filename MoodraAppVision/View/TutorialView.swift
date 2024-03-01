@@ -30,6 +30,7 @@ struct TutorialView: View {
                 Button("Exit tutorial"){
                     openWindow(id: "main")
                     dismissWindow()
+                    
                 }
                 
                 Text("Immersive Space")

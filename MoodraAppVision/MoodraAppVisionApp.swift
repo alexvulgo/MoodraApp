@@ -5,6 +5,8 @@ struct MoodraAppVisionApp: App {
 
     @State var selectedMudra : [Mudra] = []
     
+    @State var count : Int = 0
+    
     var body: some Scene {
         WindowGroup (id: "main"){
             ContentView()
@@ -22,7 +24,7 @@ struct MoodraAppVisionApp: App {
                 .defaultSize(CGSize(width: 1300, height: 360))
         
         WindowGroup(id: "mudra"){
-            MudraView()
+            MudraView(mudra: $selectedMudra,count: $count)
                 }
                 .defaultSize(CGSize(width: 300, height: 500))
          

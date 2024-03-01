@@ -10,7 +10,9 @@ import SwiftUI
 struct MudraView: View {
     
     
-    var mudra = MudraViewModel()
+    @Binding var mudra : [Mudra]
+    
+    @Binding var count : Int
     
     
     var body: some View {
@@ -18,7 +20,7 @@ struct MudraView: View {
             VStack(){
              
                 
-                Image(mudra.mudras[0].images[0])
+                Image(mudra[count].images[count])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                
@@ -28,6 +30,7 @@ struct MudraView: View {
     }
 }
 
-#Preview {
+/* #Preview {
     MudraView()
 }
+*/
