@@ -6,6 +6,7 @@ struct MoodraAppVisionApp: App {
     @State var selectedMudra : [Mudra] = []
     
     @State var count : Int = 0
+
     
     var body: some Scene {
         WindowGroup (id: "main"){

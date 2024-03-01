@@ -10,6 +10,7 @@ import Foundation
 class HandGestureController {
     var leftHand = HandModel.leftHand
     var rightHand = HandModel.rightHand
+   
     
     func checkPataka() -> Bool {
         if !rightHand.thumb.isExtended && rightHand.index.isExtended && rightHand.middle.isExtended && rightHand.ring.isExtended && rightHand.little.isExtended {

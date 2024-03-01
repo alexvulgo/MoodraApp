@@ -7,7 +7,6 @@
 import ARKit
 import SwiftUI
 
-/// A model that contains up-to-date hand coordinate information.
 @MainActor
 class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
     var leftHand = HandModel.leftHand
@@ -59,30 +58,20 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
             switch event {
             case .authorizationChanged(let type, let status):
                 if type == .handTracking && status != .allowed {
-                    // Stop the game, ask the user to grant hand tracking authorization again in Settings.
+                    // Stop the app, ask the user to grant hand tracking authorization again in Settings.
                 }
             default:
                 print("Session event \(event)")
             }
         }
     }
-    
-    /// Computes a transform representing the heart gesture performed by the user.
-    ///
-    /// - Returns:
-    ///  * A right-handed transform for the heart gesture, where:
-    ///     * The origin is in the center of the gesture
-    ///     * The X axis is parallel to the vector from left thumb knuckle to right thumb knuckle
-    ///     * The Y axis is parallel to the vector from right thumb tip to right index finger tip.
-    ///  * `nil` if either of the hands isn't tracked or the user isn't performing a heart gesture
-    ///  (the index fingers and thumbs of both hands need to touch).
-    ///
-    func computeTransformOfHandGestures() -> simd_float4x4? {
+
+    func computeTransformOfHandGestures() {
         // Get the latest hand anchors, return false if either of them isn't tracked.
         guard let leftHandAnchor = latestHandTracking.left,
               let rightHandAnchor = latestHandTracking.right,
               leftHandAnchor.isTracked, rightHandAnchor.isTracked else {
-            return nil
+            return
         }
         
         // Get all required joints and check if they are tracked.
@@ -143,7 +132,7 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
                 rightHandIndexFingerTip.isTracked && rightHandThumbTipPosition.isTracked &&
                 leftHandThumbKnuckle.isTracked && rightHandThumbKnuckle.isTracked
         else {
-            return nil
+            return
         }
         
         // Get the position of all joints in world coordinates.
@@ -313,27 +302,5 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
         if(rightLittleTipDistance <= rightLittleIntermediateTipDistance){
             rightHand.little.isExtended = true
         }
-    
-    
-        // Compute a position in the middle of the heart gesture.
-        let halfway = (originFromRightHandIndexFingerTipTransform - originFromLeftHandThumbTipTransform) / 2
-        let heartMidpoint = originFromRightHandIndexFingerTipTransform - halfway
-        
-        // Compute the vector from left thumb knuckle to right thumb knuckle and normalize (X axis).
-        let xAxis = normalize(originFromRightHandThumbKnuckleTransform - originFromLeftHandThumbKnuckleTransform)
-        
-        // Compute the vector from right thumb tip to right index finger tip and normalize (Y axis).
-        let yAxis = normalize(originFromRightHandIndexFingerTipTransform - originFromRightHandThumbTipTransform)
-        
-        let zAxis = normalize(cross(xAxis, yAxis))
-        
-        // Create the final transform for the heart gesture from the three axes and midpoint vector.
-        let heartMidpointWorldTransform = simd_matrix(
-            SIMD4(xAxis.x, xAxis.y, xAxis.z, 0),
-            SIMD4(yAxis.x, yAxis.y, yAxis.z, 0),
-            SIMD4(zAxis.x, zAxis.y, zAxis.z, 0),
-            SIMD4(heartMidpoint.x, heartMidpoint.y, heartMidpoint.z, 1)
-        )
-        return heartMidpointWorldTransform
     }
 }
