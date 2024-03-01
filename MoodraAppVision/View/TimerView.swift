@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import AVKit
 
     struct TimerView : View {
         
         @ObservedObject var timer : SimpleTimer
         @Binding var isPresented: Bool
         var timeSelected : Int
+
+        var player = try! AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "calmSea", withExtension: "mp3")!)
         
         var body: some View {
             HStack(alignment: .top) {
@@ -21,6 +24,8 @@ import SwiftUI
                             Task {
                                 self.isPresented = false
                                 timer.reset(minutes : timeSelected)
+                                player.stop()
+                                timer.isMuted = true
                             }
                         } label: {
                             Label("Back", systemImage: "chevron.backward")
@@ -36,6 +41,12 @@ import SwiftUI
                     }
                     HStack {
                         Button {
+                            if timer.isMuted {
+                                player.play()
+                            }
+                            else {
+                                player.pause()
+                            }
                             timer.isMuted = !timer.isMuted
                         } label: {
                             if(timer.isMuted) {
@@ -59,6 +70,7 @@ import SwiftUI
                         Button {
                             if(!timer.isPaused){
                                 timer.isMuted = true
+                                player.stop()
                                 timer.stop()
                             }
                             else{

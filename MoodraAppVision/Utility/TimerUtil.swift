@@ -16,7 +16,7 @@ class SimpleTimer : ObservableObject{
     private var seconds = 0
     @Published var text = "05:00"
     @Published var isPaused = false
-    @Published var isMuted = false
+    @Published var isMuted = true
     private var action: (() -> Void)
     
     init(action: @escaping () -> Void) {
@@ -76,7 +76,7 @@ class SimpleTimer : ObservableObject{
     }
     
     func timeRemaining() -> Float {
-        print("\(String(format: "%f", Float(minutes) + Float(seconds) / 100))")
+        //print("\(String(format: "%f", Float(minutes) + Float(seconds) / 100))")
         return Float(minutes) + Float(seconds) / 100
     }
     

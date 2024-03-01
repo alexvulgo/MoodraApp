@@ -21,7 +21,11 @@
 		63FEE7222B8F24F300908006 /* HandTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7212B8F24F300908006 /* HandTerms.swift */; };
 		63FEE7342B9082CF00908006 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7332B9082CF00908006 /* Testing.swift */; };
 		63FEE7362B90862C00908006 /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE7352B90862C00908006 /* HandModel.swift */; };
+<<<<<<< Updated upstream
 		63FEE76E2B920B2500908006 /* HandGestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEE76D2B920B2500908006 /* HandGestureController.swift */; };
+=======
+		675F4B562B92103100D9D925 /* calmSea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 675F4B532B91E65600D9D925 /* calmSea.mp3 */; };
+>>>>>>> Stashed changes
 		FA4C389A2B84B250000852DD /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = FA4C38992B84B250000852DD /* RealityKitContent */; };
 		FA4C389C2B84B250000852DD /* MoodraAppVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C389B2B84B250000852DD /* MoodraAppVisionApp.swift */; };
 		FA4C389E2B84B250000852DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C389D2B84B250000852DD /* ContentView.swift */; };
@@ -47,7 +51,11 @@
 		63FEE7212B8F24F300908006 /* HandTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTerms.swift; sourceTree = "<group>"; };
 		63FEE7332B9082CF00908006 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		63FEE7352B90862C00908006 /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
 		63FEE76D2B920B2500908006 /* HandGestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGestureController.swift; sourceTree = "<group>"; };
+=======
+		675F4B532B91E65600D9D925 /* calmSea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calmSea.mp3; sourceTree = "<group>"; };
+>>>>>>> Stashed changes
 		FA4C38942B84B250000852DD /* MoodraAppVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodraAppVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C38982B84B250000852DD /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		FA4C389B2B84B250000852DD /* MoodraAppVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodraAppVisionApp.swift; sourceTree = "<group>"; };
@@ -132,9 +140,18 @@
 			path = HandTrackingVision;
 			sourceTree = "<group>";
 		};
+		675F4B522B91E64A00D9D925 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				675F4B532B91E65600D9D925 /* calmSea.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		FA4C388B2B84B250000852DD = {
 			isa = PBXGroup;
 			children = (
+				675F4B522B91E64A00D9D925 /* Sound */,
 				FA4C38962B84B250000852DD /* MoodraAppVision */,
 				FA4C38972B84B250000852DD /* Packages */,
 				FA4C38952B84B250000852DD /* Products */,
@@ -247,6 +264,7 @@
 				FA4C38A42B84B25D000852DD /* Assets.xcassets in Resources */,
 				FA4C38A72B84B25D000852DD /* Preview Assets.xcassets in Resources */,
 				FA4C38A22B84B250000852DD /* ImageBasedLighting.skybox in Resources */,
+				675F4B562B92103100D9D925 /* calmSea.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
