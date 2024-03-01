@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct MudraView: View {
+    
+    
+    var mudra = MudraViewModel()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       
+            VStack(){
+             
+                
+                Image(mudra.mudras[0].images[0])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+               
+                
+                
+            }
     }
 }
 

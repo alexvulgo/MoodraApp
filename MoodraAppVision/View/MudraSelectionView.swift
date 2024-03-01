@@ -146,6 +146,7 @@ struct MudraSelectionView: View {
                 if(tutorialMode){ 
                     Button("Start"){
                         openWindow(id: "tutorial")
+                        openWindow(id: "mudra")
                         dismissWindow()
                         dismissWindow()
                 }
