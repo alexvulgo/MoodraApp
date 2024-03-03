@@ -20,9 +20,9 @@ class Player: ObservableObject {
         }
     }
     
-    func playSound() {
+    func playSound(soundName : String, soundType: String) {
         
-        if let path = Bundle.main.path(forResource: "TryAgainWav", ofType: "wav") {
+        if let path = Bundle.main.path(forResource: soundName, ofType: soundType) {
             do {
                 sound = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
                 print("Playing sound")
@@ -31,5 +31,17 @@ class Player: ObservableObject {
                 print( "Could not find file")
             }
         }
+    }
+    
+    func resumeSound() {
+        sound.play()
+    }
+    
+    func pauseSound() {
+        sound.pause()
+    }
+    
+    func stopSoud() {
+        sound.stop()
     }
 }

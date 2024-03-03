@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVFAudio
 
 class SimpleTimer : ObservableObject{
     
@@ -76,7 +77,7 @@ class SimpleTimer : ObservableObject{
     }
     
     func timeRemaining() -> Float {
-        print("\(String(format: "%f", Float(minutes) + Float(seconds) / 100))")
+        //print("\(String(format: "%f", Float(minutes) + Float(seconds) / 100))")
         return Float(minutes) + Float(seconds) / 100
     }
     

@@ -12,9 +12,9 @@ import AVFoundation
     struct TimerView : View {
         
         @ObservedObject var timer : SimpleTimer
+        @ObservedObject var player: Player
         @Binding var isPresented: Bool
         var timeSelected : Int
-        var player = try! AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "calmSea", withExtension: "mp3")!)
         
         var body: some View {
             HStack(alignment: .top) {
@@ -24,7 +24,7 @@ import AVFoundation
                             Task {
                                 self.isPresented = false
                                 timer.reset(minutes : timeSelected)
-                                player.stop()
+                                player.stopSoud()
                                 timer.isMuted = true
                             }
                         } label: {
@@ -42,10 +42,10 @@ import AVFoundation
                     HStack {
                         Button {
                             if timer.isMuted {
-                                player.play()
+                                player.resumeSound()
                             }
                             else {
-                                player.pause()
+                                player.pauseSound()
                             }
                             timer.isMuted.toggle()
                         } label: {
@@ -70,12 +70,13 @@ import AVFoundation
                         Button {
                             if(!timer.isPaused){
                                 timer.isMuted = true
+                                player.pauseSound()
                                 timer.stop()
                             }
                             else{
                                 timer.start()
                             }
-                                timer.isPaused = !timer.isPaused
+                            timer.isPaused.toggle()
                         } label: {
                             if(timer.isPaused) {
                                 Label("Play", systemImage: "play.fill")

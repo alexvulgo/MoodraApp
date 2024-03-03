@@ -10,6 +10,7 @@ import SwiftUI
 struct SessionView: View {
     
     @ObservedObject var timer : SimpleTimer = SimpleTimer(action: {})
+    @ObservedObject var player : Player = Player()
     @State private var isPresentingTimerView = false
     let settings = [5, 10, 15, 20, 25, 30]
     @State var selectedOption = 5
@@ -63,6 +64,7 @@ struct SessionView: View {
                         Button("Start") {
                             isPresentingTimerView.toggle()
                             timer.start()
+                            player.playSound(soundName: "calmSea", soundType: "mp3")
                         }
                        
                     }.onChange(of: selectedOption, {timer.set_timer(setMinutes: selectedOption)})
@@ -71,7 +73,7 @@ struct SessionView: View {
             }.frame(width: 420, height: 240)
         }
         else{
-            TimerView(timer: timer, isPresented: $isPresentingTimerView, timeSelected: selectedOption)
+            TimerView(timer: timer, player: player, isPresented: $isPresentingTimerView, timeSelected: selectedOption)
                 .glassBackgroundEffect(
                 in: RoundedRectangle(
                     cornerRadius: 32,
