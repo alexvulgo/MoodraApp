@@ -35,7 +35,7 @@ struct TutorialView: View {
     @Binding  var immersiveSpaceIsShown : Bool
     
     var body: some View {
-            
+        
         NavigationStack {
             
             VStack(alignment: .leading) {
@@ -101,16 +101,15 @@ struct TutorialView: View {
                     Spacer()
                     
                     Text("Put your hands as shown")
-                        .bold()
                         .padding()
                     
                     Spacer()
                     
                 }
                 
-                HStack(){
+                VStack(){
                     Spacer()
-                    if(!positionIsCorrect){
+                    if(!positionIsCorrect) {
                         //Incorrect position
                         ZStack{
                             Image(systemName: "circle")
@@ -126,29 +125,35 @@ struct TutorialView: View {
                         HStack{
                             Spacer()
                             Text("Incorrect Position")
+                                .bold()
                             Spacer()
                         }.padding()
                     }
-                 else { //correct position
-                    ZStack{
-                        Image(systemName: "circle")
-                            .foregroundStyle(.green)
-                            .font(.system(size: 60))
+                    
+                    else { //correct position
                         
-                        Text("4") //TODO: change it
-                            .bold()
-                            .font(.system(size: 30))
+                        
+                        
+                        ZStack{
+                            Image(systemName: "circle")
+                                .foregroundStyle(.green)
+                                .font(.system(size: 60))
+                            
+                            Text("4") //TODO: change it
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        
+                        HStack{
+                            Spacer()
+                            Text("Correct Position")
+                                .bold()
+                            Spacer()
+                        }.padding()
                     }
-                    Spacer()
+                    
                 }
-                HStack{
-                    Spacer()
-                    Text("Incorrect Position")
-                    Spacer()
-                }.padding()
-                }
-                
-                
             }
             
         }//.frame(width: 1300, height: 360)
