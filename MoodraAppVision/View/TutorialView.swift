@@ -12,10 +12,15 @@ struct TutorialView: View {
     @Binding var selectedMudra : [Mudra]
     @Binding var dismissMudraView : Bool
     
-    @State private var i = 0
-    @State private var counter = 0
+    @Binding var count : Int //variable that updates the mudraView
     
-    @State var positionIsCorrect: Bool = false
+    @State private var i = 0
+    
+    //Variables for hand tracking
+    @State var handController : HandGestureController = HandGestureController()
+    //@State var temp = false //created to test the countdown
+    @State private var timer: Timer? //timer used for countdown
+    @State private var counter = 5 //the user have to mantain the position for 5 seconds
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
@@ -45,10 +50,7 @@ struct TutorialView: View {
                     //Back Button and Immersive Space Button
                     
                     Button {
-                        openWindow(id: "main")
-                        dismissMudraView = true
-                        dismissWindow()
-                        dismissWindow()
+                        self.reset()
                     } label: {
                         Label("Back", systemImage: "chevron.backward")
                             .labelStyle(.iconOnly)
@@ -110,22 +112,26 @@ struct TutorialView: View {
                 
                 HStack(){
                     Spacer()
-                    if(!positionIsCorrect){
+                    //if(!temp){
+                    if(!handController.checkMudra(mudraToCheck: selectedMudra[i].name)){
                         //Incorrect position
                         ZStack{
                             Image(systemName: "circle")
                                 .foregroundStyle(.red)
                                 .font(.system(size: 60))
                             
-                            Text("5")
+                            Text("\(String(format: "%d", counter))")
                                 .bold()
                                 .font(.system(size: 30))
                         }
+                        .onAppear(perform: {
+                            self.resetCountdown()
+                        })
                         Spacer()
                         
                         HStack{
                             Spacer()
-                            Text("Incorrect Position")
+                            Text("Incorrect position")
                             Spacer()
                         }.padding()
                     }
@@ -135,23 +141,59 @@ struct TutorialView: View {
                             .foregroundStyle(.green)
                             .font(.system(size: 60))
                         
-                        Text("4") //TODO: change it
+                        Text("\(String(format: "%d", counter))") //TODO: change it
                             .bold()
                             .font(.system(size: 30))
                     }
+                    .onAppear(perform: {
+                        self.startCountdown()
+                    })
                     Spacer()
+                     
+                     HStack{
+                         Spacer()
+                         Text("Correct position")
+                         Spacer()
+                     }.padding()
                 }
-                HStack{
-                    Spacer()
-                    Text("Incorrect Position")
-                    Spacer()
-                }.padding()
                 }
                 
                 
             }
-            
-        }//.frame(width: 1300, height: 360)
+        }/*.onTapGesture {
+            temp.toggle()
+        }*/
+    }
+    
+    
+    func reset() {
+           openWindow(id: "main")
+           dismissMudraView = true
+           dismissWindow()
+           dismissWindow()
+       }
+    
+    func resetCountdown() {
+        counter = 5
+        
+        if ((timer?.isValid) != nil)  {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    func startCountdown() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            counter -= 1
+
+            if(counter == 0){
+                i += 1
+                timer?.invalidate()
+                timer = nil
+                if i == 3 {i = 0; self.reset(); count = 0} else {count += 1}
+                //temp = false
+            }
+        }
     }
 }
 
