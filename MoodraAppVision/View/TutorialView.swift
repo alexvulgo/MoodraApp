@@ -10,13 +10,17 @@ import SwiftUI
 struct TutorialView: View {
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
-    
+
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     @Binding var selectedMudra : [Mudra]
+    @Binding var dismissMudraView : Bool
+    
     @State private var i = 0
     @State private var counter = 0
+    
+    @State var positionIsCorrect: Bool = false
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
@@ -28,7 +32,7 @@ struct TutorialView: View {
     }
     
     var body: some View {
-        
+            
         NavigationStack {
             
             VStack(alignment: .leading) {
@@ -39,6 +43,7 @@ struct TutorialView: View {
                     
                     Button {
                         openWindow(id: "main")
+                        dismissMudraView = true
                         dismissWindow()
                         dismissWindow()
                     } label: {
@@ -53,7 +58,7 @@ struct TutorialView: View {
                     } label: {
                         Label("Immersive Space", systemImage: "mountain.2.fill")
                             .labelStyle(.iconOnly)
-                    }     .onChange(of: showImmersiveSpace) { _, newValue in
+                    }  .onChange(of: showImmersiveSpace) { _, newValue in
                         Task {
                             if newValue {
                                 switch await openImmersiveSpace(id: "beach") {
@@ -101,33 +106,44 @@ struct TutorialView: View {
                 }
                 
                 HStack(){
-                    
-                    
                     Spacer()
-                    
+                    if(!positionIsCorrect){
+                        //Incorrect position
+                        ZStack{
+                            Image(systemName: "circle")
+                                .foregroundStyle(.red)
+                                .font(.system(size: 60))
+                            
+                            Text("5")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        
+                        HStack{
+                            Spacer()
+                            Text("Incorrect Position")
+                            Spacer()
+                        }.padding()
+                    }
+                 else { //correct position
                     ZStack{
                         Image(systemName: "circle")
-                            .foregroundStyle(.red)
+                            .foregroundStyle(.green)
                             .font(.system(size: 60))
                         
-                        Text("5")
+                        Text("4") //TODO: change it
                             .bold()
                             .font(.system(size: 30))
                     }
-                    
                     Spacer()
-                    
                 }
-                
                 HStack{
-                    
                     Spacer()
-                    
                     Text("Incorrect Position")
-                    
                     Spacer()
-                    
                 }.padding()
+                }
                 
                 
             }

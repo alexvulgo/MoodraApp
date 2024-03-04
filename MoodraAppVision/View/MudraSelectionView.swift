@@ -13,7 +13,6 @@ struct MudraSelectionView: View {
     var mudra = MudraViewModel()
     
     //Variable for the scrolling  sections
-    
     @State private var currentIndex = 0
     
     @GestureState private var dragOffset : CGFloat = 0
@@ -21,6 +20,8 @@ struct MudraSelectionView: View {
     //Mudra selection
     
     @Binding var selectedMudra : [Mudra]
+    @Binding var dismissMudraView : Bool
+    
     @State var selectedMudraName : [String] = []
     var isSelectable : Bool
     { selectedMudraName.count < 3 || selectedMudraName.contains(mudra.mudras[currentIndex].name)}
@@ -49,11 +50,8 @@ struct MudraSelectionView: View {
     }
     
     var body: some View {
-        
         NavigationStack {
-            
             HStack(alignment: .top) {
-                
                 Button {
                     openWindow(id: "main")
                     dismissWindow()
@@ -67,10 +65,7 @@ struct MudraSelectionView: View {
                     .font(.title)
                 
                 Spacer()
-                
             }
-        
-            
             VStack() {
                 
                 Text("Select three mudras:")
@@ -92,24 +87,19 @@ struct MudraSelectionView: View {
                                 Text(mudra.mudras[index].name)
                             }
                         }
-                        
                         .onTapGesture {
                             if(currentIndex == index) {
                                 if selectedMudraName.contains(mudra.mudras[index].name) {
                                     selectedMudraName.removeAll(where: { $0 == mudra.mudras[index].name})
                                     selectedMudra.removeAll(where: { $0 == mudra.mudras[index]})
                                     mudraNumber = mudraNumber-1
-                                    
                                 }
-                                
-                                
                                 else if isSelectable {
                                     selectedMudraName.append(mudra.mudras[index].name)
                                     selectedMudra.append(mudra.mudras[index])
                                     mudraNumber = mudraNumber+1
                                 }
                             }
-                            
                         }
                         .frame(width: 240, height: 300)
                         .opacity(currentIndex == index ? 1.0 : 0.5)
@@ -132,21 +122,18 @@ struct MudraSelectionView: View {
                                         currentIndex = min(mudra.mudras.count, currentIndex+1)
                                     }
                                 }
-                                
                             })
-                        
                     )
-                
                 Text("\(mudraNumber)/3")
                     .bold()
                     .padding(.vertical,30)
                 
-             
                 //if user is in learn mudras
                 if(tutorialMode){ 
                     Button("Start"){
                         openWindow(id: "tutorial")
-                      //  openWindow(id: "mudra")
+                        dismissMudraView = false
+                        openWindow(id: "mudra")
                         dismissWindow()
                         dismissWindow()
                 }
@@ -155,7 +142,7 @@ struct MudraSelectionView: View {
                     //if user is in meditate
                 } else {
                     Button("Start"){
-                        
+                        dismissMudraView = false
                         openWindow(id: "session")
                         dismissWindow()
                         dismissWindow()
@@ -164,7 +151,6 @@ struct MudraSelectionView: View {
                 .disabled(ready)
                 }
             }
-            //.navigationTitle(tutorialMode == true ? "Learn Mudras" : "Meditate")
         }
     }
 }
