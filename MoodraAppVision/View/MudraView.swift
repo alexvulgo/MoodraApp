@@ -25,7 +25,7 @@ struct MudraView: View {
     var body: some View {
         
         VStack(){
-            Image(mudra[count].images[count])
+            Image(mudra[count].images[0])
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         }
