@@ -20,6 +20,8 @@ struct TutorialView: View {
     @State private var i = 0
     @State private var counter = 0
     
+    @State var positionIsCorrect: Bool = false
+    
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
     
@@ -104,33 +106,44 @@ struct TutorialView: View {
                 }
                 
                 HStack(){
-                    
-                    
                     Spacer()
-                    
+                    if(!positionIsCorrect){
+                        //Incorrect position
+                        ZStack{
+                            Image(systemName: "circle")
+                                .foregroundStyle(.red)
+                                .font(.system(size: 60))
+                            
+                            Text("5")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        
+                        HStack{
+                            Spacer()
+                            Text("Incorrect Position")
+                            Spacer()
+                        }.padding()
+                    }
+                 else { //correct position
                     ZStack{
                         Image(systemName: "circle")
-                            .foregroundStyle(.red)
+                            .foregroundStyle(.green)
                             .font(.system(size: 60))
                         
-                        Text("5")
+                        Text("4") //TODO: change it
                             .bold()
                             .font(.system(size: 30))
                     }
-                    
                     Spacer()
-                    
                 }
-                
                 HStack{
-                    
                     Spacer()
-                    
                     Text("Incorrect Position")
-                    
                     Spacer()
-                    
                 }.padding()
+                }
                 
                 
             }
