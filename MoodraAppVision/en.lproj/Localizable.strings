@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  MoodraAppVision
+
+  Created by Matteo Perotta on 04/03/24.
+ 
+ How to use them:
+ Text(LocalizedStringKey("welcome.title"))
+
+*/
+
+"welcome.title" = "Moodra: Meditate with Mudras";
+"welcome.subtitle" = "Start your meditation session with mudras.";
+"start" = "Start";
+"pick3.mudras" = "Select three mudras";
+"meditate.title" = "Meditate";
+"learn.mudras" = "Learn Mudras";
+"feedback.correct" = "Correct position";
+"feedback.incorrect" = "Incorrect position";
+"hand.instruction" = "Put your hands as shown";

@@ -88,7 +88,8 @@ struct SessionView: View {
 
 /*#Preview {
 
-    SessionView().glassBackgroundEffect(
+    SessionView() .environment(\.locale, .init(identifier: "it"))
+        .glassBackgroundEffect(
         in: RoundedRectangle(
             cornerRadius: 32,
             style: .continuous
