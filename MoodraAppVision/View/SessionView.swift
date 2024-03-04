@@ -112,10 +112,11 @@ struct SessionView: View {
                             isPresentingTimerView.toggle()
                             timer.start()
                             player.playSound(soundName: "calmSea", soundType: "mp3")
+                            dismissMudraView = false
                             openWindow(id: "mudra")
                         }
                        
-                    }.onChange(of: selectedOption, {timer.set_timer(setMinutes: selectedOption)})
+                    }.onChange(of: selectedOption, {timer.set_timer(setMinutes: selectedOption, setSeconds: 0)})
                         .frame(width: 420 ,height: 50)
                 }.padding(.vertical, 12)
             }.frame(width: 420, height: 240)

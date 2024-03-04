@@ -28,19 +28,14 @@ import AVFoundation
                 VStack(spacing: 0) {
                     HStack(alignment: .top) {
                         Button {
-                                self.isPresented = false
-                                timer.reset(minutes : timeSelected)
-                                player.stopSoud()
-                                timer.isMuted = true
-                                dismissMudraView = true
+                            self.reset()
                         } label: {
                             Label("Back", systemImage: "chevron.backward")
                                 .labelStyle(.iconOnly)
                         }
                         .offset(x: 20, y: -65)
                         
-                        
-                        
+
                         Button {
                             //Immersive Space
                             showImmersiveSpace.toggle()
@@ -143,5 +138,15 @@ import AVFoundation
                 .padding(.top, 64)
             }
             .frame(width: 420, height: 240)
+            .onChange(of: timer.isExpired, {if timer.isExpired {self.reset()}})
+        }
+        
+        func reset() {
+            self.isPresented = false
+            timer.reset(minutes : timeSelected)
+            player.stopSoud()
+            timer.isMuted = true
+            dismissMudraView = true
+            timer.isExpired = false
         }
     }

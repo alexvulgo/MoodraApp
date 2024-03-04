@@ -18,6 +18,7 @@ class SimpleTimer : ObservableObject{
     @Published var text = "05:00"
     @Published var isPaused = false
     @Published var isMuted = false
+    @Published var isExpired = false
     private var action: (() -> Void)
     
     init(action: @escaping () -> Void) {
@@ -35,9 +36,9 @@ class SimpleTimer : ObservableObject{
         }
     }
     
-    func set_timer(setMinutes : Int) {
+    func set_timer(setMinutes : Int, setSeconds: Int) {
         self.minutes = setMinutes
-        self.seconds = 0
+        self.seconds = setSeconds
         text = "\(String(format: "%02d", self.minutes)):\(String(format: "%02d", self.seconds))"
     }
     
@@ -78,6 +79,10 @@ class SimpleTimer : ObservableObject{
     
     func timeRemaining() -> Float {
         //print("\(String(format: "%f", Float(minutes) + Float(seconds) / 100))")
+        if (Float(minutes) + Float(seconds) / 100) == 0 {
+            self.isExpired = true
+        }
+        
         return Float(minutes) + Float(seconds) / 100
     }
     
