@@ -32,15 +32,17 @@ struct ContentView: View {
     }
 
     var body: some View {
-    
+        
         NavigationStack{
+            
+            
             VStack {
                 
                 ZStack{
                     Circle()
                         .fill(Color.white)
                         .frame(width: 222, height: 222)
-                   
+                    
                     Image("Main")
                         .resizable()
                         .frame(width: 222, height: 222)
@@ -62,14 +64,14 @@ struct ContentView: View {
                 .padding()
                 
                 /*
-                Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
-                    .toggleStyle(.button)
-                    .padding(.top, 50)
+                 Toggle("Show Immersive Space", isOn: $showImmersiveSpace)
+                 .toggleStyle(.button)
+                 .padding(.top, 50)
                  */
                 
                 /*NavigationLink(destination: MudraSelectionView(tutorialMode: true)) {
-                   Text("Learn Mudras")
-                }*/
+                 Text("Learn Mudras")
+                 }*/
                 
                 VStack {
                     Button("Learn Mudras"){
@@ -94,15 +96,66 @@ struct ContentView: View {
                 
                 //.navigationBarTitle("Welcome")
                 
-               /* NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
-                    Text("Meditate")
-                }
-                .navigationBarTitle("Welcome")*/
+                /* NavigationLink(destination: MudraSelectionView(tutorialMode: false)) {
+                 Text("Meditate")
+                 }
+                 .navigationBarTitle("Welcome")*/
             }
-               
+            
         }
         .padding()
-        .onChange(of: showImmersiveSpace) { _, newValue in
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomOrnament) {
+                
+                HStack {
+                    
+                    //Immersive Space Button
+                    Button {
+                        //Immersive Space
+                        showImmersiveSpace.toggle()
+                    } label: {
+                        Label("Immersive Space", systemImage: "mountain.2.fill")
+                            .labelStyle(.iconOnly)
+                    }     .onChange(of: showImmersiveSpace) { _, newValue in
+                        Task {
+                            if newValue {
+                                switch await openImmersiveSpace(id: "beach") {
+                                case .opened:
+                                    immersiveSpaceIsShown = true
+                                case .error, .userCancelled:
+                                    fallthrough
+                                @unknown default:
+                                    immersiveSpaceIsShown = false
+                                    showImmersiveSpace = false
+                                }
+                            } else if immersiveSpaceIsShown {
+                                await dismissImmersiveSpace()
+                                immersiveSpaceIsShown = false
+                            }
+                        }
+                    }
+                    
+                    // Audio selection button
+                    
+                    Button {
+                        //Immersive Space
+                       
+                    } label: {
+                        Label("Audio Selection", systemImage: "speaker.wave.3.fill")
+                            .labelStyle(.iconOnly)
+                    }
+                    
+                    
+                    
+                   
+                }
+                
+            }
+        }
+        
+    }
+        
+       /* .onChange(of: showImmersiveSpace) { _, newValue in
             Task {
                 if newValue {
                     switch await openImmersiveSpace(id: "beach") {
@@ -118,9 +171,14 @@ struct ContentView: View {
                     await dismissImmersiveSpace()
                     immersiveSpaceIsShown = false
                 }
+        
+    
             }
+        
         }
-    }
+        
+        */
+   // }
     
     func startMeditationSession(){
         print("starting a meditation session")
