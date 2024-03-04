@@ -10,6 +10,17 @@ import Foundation
 class HandGestureController {
     var leftHand = HandModel.leftHand
     var rightHand = HandModel.rightHand
+    
+    func checkMudra(mudraToCheck: String) -> Bool {
+        switch mudraToCheck{
+        case "pataka": return checkPataka()
+        case "tripataka": return checkTriPataka()
+        case "mushthu": return checkMushthu()
+        case "ardmachandra": return checkArdmachandra()
+        case "shikhara": return checkShikhara()
+        default: return false
+        }
+    }
    
     
     func checkPataka() -> Bool {
