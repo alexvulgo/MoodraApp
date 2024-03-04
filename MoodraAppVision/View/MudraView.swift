@@ -23,9 +23,6 @@ struct MudraView: View {
                 Image(mudra[count].images[count])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-               
-                
-                
             }
     }
 }

@@ -41,7 +41,6 @@ struct TutorialView: View {
                         openWindow(id: "main")
                         dismissWindow()
                         dismissWindow()
-                    
                     } label: {
                         Label("Back", systemImage: "chevron.backward")
                             .labelStyle(.iconOnly)
