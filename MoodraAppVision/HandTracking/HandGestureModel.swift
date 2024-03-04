@@ -135,7 +135,8 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
             return
         }
         
-        // Get the position of all joints in world coordinates.
+        // Get the position of all joints in world coordinates: 4x4 transform matrices. The last column in the matrix contains the translation data (xyz coordinates).
+        // let right_hand_joint = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: "right_hand_joint")) returns a simd_float4x4
         
         //Left Hand Knuckles
         let originFromLeftHandThumbKnuckleTransform = matrix_multiply(
@@ -226,6 +227,8 @@ class HandGestureDetectionModel: ObservableObject, @unchecked Sendable {
         //distance between the finger tip and the wrist,
         //         and the intermediate tip and the wrist.
         //IF intermediate > tip, the finger is extended
+        //In the iOS app we use the distances from the wrist, instead that from the knuckle.
+        //We need to test that in vision OS to understand if adding TIP, DIP and PIP to check the extension is needed or not.
         
         //Right Hand
         
