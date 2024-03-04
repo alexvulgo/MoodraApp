@@ -19,11 +19,13 @@ struct SessionView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
     
-    @State private var showImmersiveSpace = false
-    @State private var immersiveSpaceIsShown = false
+    //IMMERSIVE SPACE
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Binding  var showImmersiveSpace : Bool
+    @Binding  var immersiveSpaceIsShown : Bool
     
     func dismissWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
@@ -122,7 +124,7 @@ struct SessionView: View {
             }.frame(width: 420, height: 240)
         }
         else{
-            TimerView(timer: timer, player: player, isPresented: $isPresentingTimerView, dismissMudraView: $dismissMudraView, timeSelected: selectedOption)
+            TimerView(timer: timer, player: player, isPresented: $isPresentingTimerView, dismissMudraView: $dismissMudraView, timeSelected: selectedOption, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
                 .glassBackgroundEffect(
                 in: RoundedRectangle(
                     cornerRadius: 32,

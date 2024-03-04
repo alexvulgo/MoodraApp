@@ -49,6 +49,16 @@ struct MudraSelectionView: View {
         }
     }
     
+    //IMMERSIVE SPACE
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Binding  var showImmersiveSpace : Bool
+    @Binding  var immersiveSpaceIsShown : Bool
+    
+    
+    
     var body: some View {
         NavigationStack {
             HStack(alignment: .top) {
@@ -58,6 +68,32 @@ struct MudraSelectionView: View {
                 } label: {
                     Label("Back", systemImage: "chevron.backward")
                         .labelStyle(.iconOnly)
+                }
+                .offset(y: -8)
+                
+                Button {
+                    //Immersive Space
+                    showImmersiveSpace.toggle()
+                } label: {
+                    Label("Immersive Space", systemImage: "mountain.2.fill")
+                        .labelStyle(.iconOnly)
+                }  .onChange(of: showImmersiveSpace) { _, newValue in
+                    Task {
+                        if newValue {
+                            switch await openImmersiveSpace(id: "beach") {
+                            case .opened:
+                                immersiveSpaceIsShown = true
+                            case .error, .userCancelled:
+                                fallthrough
+                            @unknown default:
+                                immersiveSpaceIsShown = false
+                                showImmersiveSpace = false
+                            }
+                        } else if immersiveSpaceIsShown {
+                            await dismissImmersiveSpace()
+                            immersiveSpaceIsShown = false
+                        }
+                    }
                 }
                 .offset(y: -8)
                 

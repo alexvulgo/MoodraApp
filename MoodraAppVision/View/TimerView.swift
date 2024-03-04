@@ -17,11 +17,13 @@ import AVFoundation
         @Binding var dismissMudraView : Bool
         var timeSelected : Int
         
-        @State private var showImmersiveSpace = false
-        @State private var immersiveSpaceIsShown = false
+        //IMMERSIVE SPACE
         
         @Environment(\.openImmersiveSpace) var openImmersiveSpace
         @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+        
+        @Binding  var showImmersiveSpace : Bool
+        @Binding  var immersiveSpaceIsShown : Bool
         
         var body: some View {
             HStack(alignment: .top) {

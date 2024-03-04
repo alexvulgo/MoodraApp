@@ -12,24 +12,28 @@ import RealityKitContent
 
 struct ContentView: View {
     
-    private var viewModel = MudraViewModel()
+    
+    var viewModel = MudraViewModel()
     @State var val = 0
 
-    @State private var showImmersiveSpace = false
-    @State private var immersiveSpaceIsShown = false
-    @State private var startASession = false
+    @State var startASession = false
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
-
-    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     func dismissWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             dismiss()
         }
     }
+    
+    //IMMERSIVE SPACE
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Binding var showImmersiveSpace : Bool
+    @Binding var immersiveSpaceIsShown : Bool
 
     var body: some View {
         
@@ -186,6 +190,7 @@ struct ContentView: View {
     }
 }
 
-#Preview(windowStyle: .automatic) {
+/*#Preview(windowStyle: .automatic) {
     ContentView()
 }
+*/

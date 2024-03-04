@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct TutorialView: View {
-    @State private var showImmersiveSpace = false
-    @State private var immersiveSpaceIsShown = false
-
-    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     @Binding var selectedMudra : [Mudra]
     @Binding var dismissMudraView : Bool
@@ -30,6 +25,14 @@ struct TutorialView: View {
             dismiss()
         }
     }
+    
+    //IMMERSIVE SPACE
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    @Binding  var showImmersiveSpace : Bool
+    @Binding  var immersiveSpaceIsShown : Bool
     
     var body: some View {
             
