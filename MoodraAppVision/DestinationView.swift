@@ -23,21 +23,24 @@ struct DestinationView: View {
     }
     
     var body: some View {
-        RealityView { content in
-            let rootEntity = Entity()
-            rootEntity.addSkybox(for: destination)
-            content.add(rootEntity)
-            
-            if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
-                content.add(immersiveContentEntity)
-            }
-            
-        } update: { content in
-            guard destinationChanged else { return }
-            guard let entity = content.entities.first else { fatalError() }
-            entity.updateTexture(for: destination)
-            Task { @MainActor in
-                destinationChanged = false
+        ZStack{
+            ImmersiveView()
+            RealityView { content in
+                let rootEntity = Entity()
+                rootEntity.addSkybox(for: destination)
+                content.add(rootEntity)
+                
+                if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
+                    content.add(immersiveContentEntity)
+                }
+                
+            } update: { content in
+                guard destinationChanged else { return }
+                guard let entity = content.entities.first else { fatalError() }
+                entity.updateTexture(for: destination)
+                Task { @MainActor in
+                    destinationChanged = false
+                }
             }
         }
     }

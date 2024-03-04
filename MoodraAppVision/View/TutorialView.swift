@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct TutorialView: View {
+    @State private var showImmersiveSpace = false
+    @State private var immersiveSpaceIsShown = false
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     @Binding var selectedMudra : [Mudra]
     @State private var i = 0
@@ -45,9 +50,27 @@ struct TutorialView: View {
                     
                     Button {
                         //Immersive Space
+                        showImmersiveSpace.toggle()
                     } label: {
                         Label("Immersive Space", systemImage: "mountain.2.fill")
                             .labelStyle(.iconOnly)
+                    }     .onChange(of: showImmersiveSpace) { _, newValue in
+                        Task {
+                            if newValue {
+                                switch await openImmersiveSpace(id: "beach") {
+                                case .opened:
+                                    immersiveSpaceIsShown = true
+                                case .error, .userCancelled:
+                                    fallthrough
+                                @unknown default:
+                                    immersiveSpaceIsShown = false
+                                    showImmersiveSpace = false
+                                }
+                            } else if immersiveSpaceIsShown {
+                                await dismissImmersiveSpace()
+                                immersiveSpaceIsShown = false
+                            }
+                        }
                     }
                     .offset(y: -8)
                     
