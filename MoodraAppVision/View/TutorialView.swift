@@ -23,65 +23,99 @@ struct TutorialView: View {
     }
     
     var body: some View {
-        HStack{
+        
+        NavigationStack {
             
-            VStack{
+            VStack(alignment: .leading) {
                 
-                Button("Exit tutorial"){
-                    openWindow(id: "main")
-                    dismissWindow()
+                HStack(alignment: .top) {
                     
-                }
-                
-                Text("Immersive Space")
-            }
-            .padding()
-            
-            Spacer()
-            
-            VStack{
-                
-                Text("\(selectedMudra[i].name)")
-                    .padding()
-                
-                Spacer()
-                
-                Text("\(selectedMudra[i].instructions[counter])")
-                    .padding()
-                    .onTapGesture {
-                        counter = ((counter + 1) % (selectedMudra[i].instructions.count))
+                    //Back Button and Immersive Space Button
+                    
+                    Button {
+                        openWindow(id: "main")
+                        dismissWindow()
+                        dismissWindow()
+                    
+                    } label: {
+                        Label("Back", systemImage: "chevron.backward")
+                            .labelStyle(.iconOnly)
                     }
-                
-                Spacer()
-                
-                Text("\(counter+1)/\(selectedMudra[i].instructions.count)")
-                    .padding()
-            }
-            .padding()
-            
-            Spacer()
-            
-            VStack{
-                
-                ZStack{
-                    Image(systemName: "circle")
-                        .foregroundStyle(.red)
-                        .font(.system(size: 60))
+                    .offset(y: -8)
                     
-                    Text("5")
+                    Button {
+                        //Immersive Space
+                    } label: {
+                        Label("Immersive Space", systemImage: "mountain.2.fill")
+                            .labelStyle(.iconOnly)
+                    }
+                    .offset(y: -8)
+                    
+                }.padding()
+                
+                
+                HStack{
+                    
+                    Spacer()
+                    
+                    Text("\(selectedMudra[i].name)")
                         .bold()
-                        .font(.system(size: 30))
+                        .padding()
+                    
+                    Spacer()
+                    
                 }
                 
-                Text("Incorrect Position")
+                HStack{
+                    
+                    Spacer()
+                    
+                    Text("Put your hands as shown")
+                        .bold()
+                        .padding()
+                    
+                    Spacer()
+                    
+                }
+                
+                HStack(){
+                    
+                    
+                    Spacer()
+                    
+                    ZStack{
+                        Image(systemName: "circle")
+                            .foregroundStyle(.red)
+                            .font(.system(size: 60))
+                        
+                        Text("5")
+                            .bold()
+                            .font(.system(size: 30))
+                    }
+                    
+                    Spacer()
+                    
+                }
+                
+                HStack{
+                    
+                    Spacer()
+                    
+                    Text("Incorrect Position")
+                    
+                    Spacer()
+                    
+                }.padding()
+                
+                
             }
-                .padding()
             
-        }.frame(width: 1300, height: 360)
+        }//.frame(width: 1300, height: 360)
     }
 }
 
 
+
 /*#Preview {
-    TutorialView()
-}*/
+ TutorialView()
+ }*/

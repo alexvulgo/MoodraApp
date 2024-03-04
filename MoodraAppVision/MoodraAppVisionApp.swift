@@ -22,7 +22,7 @@ struct MoodraAppVisionApp: App {
         WindowGroup(id: "tutorial"){
             TutorialView(selectedMudra: $selectedMudra)
                 }
-                .defaultSize(CGSize(width: 1300, height: 360))
+                .defaultSize(CGSize(width: 420, height: 360))
         
         WindowGroup(id: "mudra"){
             MudraView(mudra: $selectedMudra,count: $count)

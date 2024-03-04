@@ -69,7 +69,7 @@ struct MudraSelectionView: View {
                 Spacer()
                 
             }
-            .padding()
+        
             
             VStack() {
                 
@@ -155,7 +155,9 @@ struct MudraSelectionView: View {
                     //if user is in meditate
                 } else {
                     Button("Start"){
+                        
                         openWindow(id: "session")
+                        openWindow(id: "mudra")
                         dismissWindow()
                         dismissWindow()
                 }
