@@ -14,6 +14,7 @@ struct SessionView: View {
     @State private var isPresentingTimerView = false
     let settings = [5, 10, 15, 20, 25, 30]
     @State var selectedOption = 5
+    @Binding var dismissMudraView : Bool
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
@@ -74,7 +75,7 @@ struct SessionView: View {
             }.frame(width: 420, height: 240)
         }
         else{
-            TimerView(timer: timer, player: player, isPresented: $isPresentingTimerView, timeSelected: selectedOption)
+            TimerView(timer: timer, player: player, isPresented: $isPresentingTimerView, dismissMudraView: $dismissMudraView, timeSelected: selectedOption)
                 .glassBackgroundEffect(
                 in: RoundedRectangle(
                     cornerRadius: 32,
@@ -85,7 +86,7 @@ struct SessionView: View {
     }
 }
 
-#Preview {
+/*#Preview {
 
     SessionView() .environment(\.locale, .init(identifier: "it"))
         .glassBackgroundEffect(
@@ -94,14 +95,4 @@ struct SessionView: View {
             style: .continuous
         )
     )
-}
-
-#Preview {
-
-    SessionView().glassBackgroundEffect(
-        in: RoundedRectangle(
-            cornerRadius: 32,
-            style: .continuous
-        )
-    )
-}
+}*/

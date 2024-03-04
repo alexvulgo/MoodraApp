@@ -14,6 +14,7 @@ import AVFoundation
         @ObservedObject var timer : SimpleTimer
         @ObservedObject var player: Player
         @Binding var isPresented: Bool
+        @Binding var dismissMudraView : Bool
         var timeSelected : Int
         
         var body: some View {
@@ -21,12 +22,11 @@ import AVFoundation
                 VStack(spacing: 0) {
                     HStack(alignment: .top) {
                         Button {
-                            Task {
                                 self.isPresented = false
                                 timer.reset(minutes : timeSelected)
                                 player.stopSoud()
                                 timer.isMuted = true
-                            }
+                                dismissMudraView = true
                         } label: {
                             Label("Back", systemImage: "chevron.backward")
                                 .labelStyle(.iconOnly)
