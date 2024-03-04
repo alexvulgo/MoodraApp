@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  MoodraAppVision
+
+  Created by Matteo Perotta on 04/03/24.
+  
+*/
+"welcome.title" = "Moodra: Medita con le Mudra";
+"welcome.subtitle" = "Inizia la tua sessione di meditazione con mudra";
+"start" = "Inizia";
+"pick3.mudras" = "Seleziona 3 mudra";
+"meditate.title" = "Medita";
+"learn.mudras" = "Impara mudra";
+"feedback.correct" = "Poisizione corretta!";
+"feedback.incorrect" = "Posizione errata";
+"hand.instruction" = "Metti le mani come in figura";
