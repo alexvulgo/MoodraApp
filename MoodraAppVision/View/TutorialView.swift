@@ -119,30 +119,29 @@ struct TutorialView: View {
                                 .font(.system(size: 30))
                         }
                         Spacer()
-                        
                         HStack{
                             Spacer()
                             Text("Incorrect Position")
                             Spacer()
+                            Spacer()
                         }.padding()
                     }
-                 else { //correct position
-                    ZStack{
-                        Image(systemName: "circle")
-                            .foregroundStyle(.green)
-                            .font(.system(size: 60))
-                        
-                        Text("4") //TODO: change it
-                            .bold()
-                            .font(.system(size: 30))
+                    else { //correct position
+                        ZStack{
+                            Image(systemName: "circle")
+                                .foregroundStyle(.green)
+                                .font(.system(size: 60))
+                            Text("4") //TODO: change it
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            Text("Correct Position")
+                            //Spacer()
+                        }.padding()
                     }
-                    Spacer()
-                }
-                HStack{
-                    Spacer()
-                    Text("Incorrect Position")
-                    Spacer()
-                }.padding()
                 }
                 
                 
