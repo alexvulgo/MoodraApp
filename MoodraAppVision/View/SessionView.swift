@@ -18,6 +18,12 @@ struct SessionView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
     
+    @State private var showImmersiveSpace = false
+    @State private var immersiveSpaceIsShown = false
+    
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
     func dismissWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             dismiss()
@@ -31,6 +37,8 @@ struct SessionView: View {
             HStack(alignment: .top) {
                 VStack(spacing: 0) {
                     HStack(alignment: .top) {
+                        
+                        
                         Button {
                             openWindow(id: "mudraSelectionSession")
                             dismissWindow()
@@ -38,13 +46,51 @@ struct SessionView: View {
                             Label("Back", systemImage: "chevron.backward")
                                 .labelStyle(.iconOnly)
                         }
-                        .offset(x: -38, y: -20)
+                        .offset(x: -48)
+                        
+                        
+                        
+                        Button {
+                            //Immersive Space
+                            showImmersiveSpace.toggle()
+                        } label: {
+                            Label("Immersive Space", systemImage: "mountain.2.fill")
+                                .labelStyle(.iconOnly)
+                        }     .onChange(of: showImmersiveSpace) { _, newValue in
+                            Task {
+                                if newValue {
+                                    switch await openImmersiveSpace(id: "beach") {
+                                    case .opened:
+                                        immersiveSpaceIsShown = true
+                                    case .error, .userCancelled:
+                                        fallthrough
+                                    @unknown default:
+                                        immersiveSpaceIsShown = false
+                                        showImmersiveSpace = false
+                                    }
+                                } else if immersiveSpaceIsShown {
+                                    await dismissImmersiveSpace()
+                                    immersiveSpaceIsShown = false
+                                }
+                            }
+                        }
+                        .offset(x:-53)
+                        
+                    }.padding(.trailing, 200)
+                        .frame(width: 270, height: 40)
+                    
+                    
+                    HStack(){
+                        
+                        Spacer()
                         
                         Text("Start session")
                             .font(.system(size: 35))
                             .bold()
-                            .padding(.trailing, 60)
                             .frame(width: 270, height: 40)
+                            .offset(y:10)
+                        
+                        Spacer()
                     }
                     
                     Text("Take some of your time to meditate by focusing on the movement of your hands.")

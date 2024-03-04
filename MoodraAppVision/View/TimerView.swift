@@ -16,6 +16,12 @@ import AVFoundation
         @Binding var isPresented: Bool
         var timeSelected : Int
         
+        @State private var showImmersiveSpace = false
+        @State private var immersiveSpaceIsShown = false
+        
+        @Environment(\.openImmersiveSpace) var openImmersiveSpace
+        @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+        
         var body: some View {
             HStack(alignment: .top) {
                 VStack(spacing: 0) {
@@ -31,7 +37,37 @@ import AVFoundation
                             Label("Back", systemImage: "chevron.backward")
                                 .labelStyle(.iconOnly)
                         }
-                        .offset(x: -3, y: -65)
+                        .offset(x: 20, y: -65)
+                        
+                        
+                        
+                        Button {
+                            //Immersive Space
+                            showImmersiveSpace.toggle()
+                        } label: {
+                            Label("Immersive Space", systemImage: "mountain.2.fill")
+                                .labelStyle(.iconOnly)
+                        }     .onChange(of: showImmersiveSpace) { _, newValue in
+                            Task {
+                                if newValue {
+                                    switch await openImmersiveSpace(id: "beach") {
+                                    case .opened:
+                                        immersiveSpaceIsShown = true
+                                    case .error, .userCancelled:
+                                        fallthrough
+                                    @unknown default:
+                                        immersiveSpaceIsShown = false
+                                        showImmersiveSpace = false
+                                    }
+                                } else if immersiveSpaceIsShown {
+                                    await dismissImmersiveSpace()
+                                    immersiveSpaceIsShown = false
+                                }
+                            }
+                        }
+                        .offset(x:15, y:-65)
+                        
+                        
                         
                             Text("\(timer.text)")
                                 .font(.system(size: 100))

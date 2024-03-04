@@ -82,7 +82,7 @@ struct ContentView: View {
                     .padding(.bottom, 5)
                     
                     Button("Meditate"){
-                        showImmersiveSpace = true
+                        //showImmersiveSpace = true
                         openWindow(id : "mudraSelectionSession")
                         dismissWindow()
                     }
