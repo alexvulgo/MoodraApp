@@ -65,6 +65,7 @@ struct SessionView: View {
                             isPresentingTimerView.toggle()
                             timer.start()
                             player.playSound(soundName: "calmSea", soundType: "mp3")
+                            openWindow(id: "mudra")
                         }
                        
                     }.onChange(of: selectedOption, {timer.set_timer(setMinutes: selectedOption)})
