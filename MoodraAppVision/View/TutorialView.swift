@@ -12,15 +12,10 @@ struct TutorialView: View {
     @Binding var selectedMudra : [Mudra]
     @Binding var dismissMudraView : Bool
     
-    @Binding var count : Int //variable that updates the mudraView
-    
     @State private var i = 0
+    @State private var counter = 0
     
-    //Variables for hand tracking
-    @State var handController : HandGestureController = HandGestureController()
-    //@State var temp = false //created to test the countdown
-    @State private var timer: Timer? //timer used for countdown
-    @State private var counter = 5 //the user have to mantain the position for 5 seconds
+    @State var positionIsCorrect: Bool = false
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
@@ -40,7 +35,7 @@ struct TutorialView: View {
     @Binding  var immersiveSpaceIsShown : Bool
     
     var body: some View {
-            
+        
         NavigationStack {
             
             VStack(alignment: .leading) {
@@ -50,7 +45,10 @@ struct TutorialView: View {
                     //Back Button and Immersive Space Button
                     
                     Button {
-                        self.reset()
+                        openWindow(id: "main")
+                        dismissMudraView = true
+                        dismissWindow()
+                        dismissWindow()
                     } label: {
                         Label("Back", systemImage: "chevron.backward")
                             .labelStyle(.iconOnly)
@@ -103,97 +101,62 @@ struct TutorialView: View {
                     Spacer()
                     
                     Text("Put your hands as shown")
-                        .bold()
                         .padding()
                     
                     Spacer()
                     
                 }
                 
-                HStack(){
+                VStack(){
                     Spacer()
-                    //if(!temp){
-                    if(!handController.checkMudra(mudraToCheck: selectedMudra[i].name)){
+                    if(!positionIsCorrect) {
                         //Incorrect position
                         ZStack{
                             Image(systemName: "circle")
                                 .foregroundStyle(.red)
                                 .font(.system(size: 60))
                             
-                            Text("\(String(format: "%d", counter))")
+                            Text("5")
                                 .bold()
                                 .font(.system(size: 30))
                         }
-                        .onAppear(perform: {
-                            self.resetCountdown()
-                        })
                         Spacer()
                         
                         HStack{
                             Spacer()
-                            Text("Incorrect position")
+                            Text("Incorrect Position")
+                                .bold()
                             Spacer()
                         }.padding()
                     }
-                 else { //correct position
-                    ZStack{
-                        Image(systemName: "circle")
-                            .foregroundStyle(.green)
-                            .font(.system(size: 60))
+                    
+                    else { //correct position
                         
-                        Text("\(String(format: "%d", counter))") //TODO: change it
-                            .bold()
-                            .font(.system(size: 30))
+                        
+                        
+                        ZStack{
+                            Image(systemName: "circle")
+                                .foregroundStyle(.green)
+                                .font(.system(size: 60))
+                            
+                            Text("4") //TODO: change it
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        
+                        HStack{
+                            Spacer()
+                            Text("Correct Position")
+                                .bold()
+                            Spacer()
+                        }.padding()
                     }
-                    .onAppear(perform: {
-                        self.startCountdown()
-                    })
-                    Spacer()
-                     
-                     HStack{
-                         Spacer()
-                         Text("Correct position")
-                         Spacer()
-                     }.padding()
+                    
                 }
-                }
-                
-                
             }
-        }/*.onTapGesture {
-            temp.toggle()
-        }*/
-    }
-    
-    
-    func reset() {
-           openWindow(id: "main")
-           dismissMudraView = true
-           dismissWindow()
-           dismissWindow()
-       }
-    
-    func resetCountdown() {
-        counter = 5
-        
-        if ((timer?.isValid) != nil)  {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
-    func startCountdown() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            counter -= 1
-
-            if(counter == 0){
-                i += 1
-                timer?.invalidate()
-                timer = nil
-                if i == 3 {i = 0; self.reset(); count = 0} else {count += 1}
-                //temp = false
-            }
-        }
+            
+        }//.frame(width: 1300, height: 360)
     }
 }
 
