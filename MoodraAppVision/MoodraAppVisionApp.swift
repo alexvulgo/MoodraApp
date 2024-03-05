@@ -12,6 +12,14 @@ struct MoodraAppVisionApp: App {
     @State var soundSelected = "Calm Sea"
     
     var body: some Scene {
+        
+        WindowGroup (id: "onboarding"){
+           OnboardingView()
+        }
+        .windowResizability(.contentSize)
+        
+        
+        
         WindowGroup (id: "main"){
             ContentView(soundSelected: $soundSelected, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
         }
@@ -41,6 +49,8 @@ struct MoodraAppVisionApp: App {
             MudraSelectionView(selectedMudra: $selectedMudra, dismissMudraView: $dismissMudraView, tutorialMode: false, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
         }
         .windowResizability(.contentSize)
+        
+        
         
 /*
         ImmersiveSpace(id: "ImmersiveSpace") {

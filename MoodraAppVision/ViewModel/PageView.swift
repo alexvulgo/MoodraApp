@@ -32,10 +32,10 @@ struct PageView: View {
             
             
             Text(page.name)
-                .font(.title)
+                .font(.largeTitle)
             
             Text(page.description)
-                .font(.subheadline)
+                
         }.frame(width: 600)
             .multilineTextAlignment(.center)
     }

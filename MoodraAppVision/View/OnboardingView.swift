@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismiss) private var dismiss
     
     @State var pageIndex = 0
     private let pages : [Page] = Page.pages
     private let dotAppearance = UIPageControl.appearance()
-    
-    func goToZero() {
-        
-        pageIndex = 0
-        
-    }
+
     
     func incrementPage() {
         
         pageIndex += 1
     }
+    
+    
+    func dismissWindow() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+            dismiss()
+        }
+    }
+    
     var body: some View {
         TabView(selection: $pageIndex) {
             ForEach(pages) { page in
@@ -32,16 +37,22 @@ struct OnboardingView: View {
                     Spacer()
                     
                     HStack {
-                      
-                        Button("Skip", action: goToZero )
+                        
+                        Button("Skip") {
+                            openWindow(id : "main")
+                            dismissWindow()
+                        }
                             .buttonStyle(.bordered)
                         
                         if (page == pages.last) {
-                            Button("Start", action: goToZero )
+                            Button("Start"){
+                                openWindow(id : "main")
+                                dismissWindow()
+                            }
                                 .buttonStyle(.bordered)
                                 .foregroundStyle(.black)
                                 .tint(.white)
-                                
+                            
                             
                         } else {
                             Button("Next", action: incrementPage )
@@ -54,15 +65,11 @@ struct OnboardingView: View {
                         }
                         
                         
-                        
-                       
-                            
-                        
                     }
                     
                     Spacer()
                     
-                   
+                    
                 } .tag(page.tag)
                     .padding()
             }
