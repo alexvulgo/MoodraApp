@@ -57,31 +57,34 @@ struct TutorialView: View {
                     }
                     .offset(x: 5)
                     
-                    Button {
-                        //Immersive Space
-                        showImmersiveSpace.toggle()
-                    } label: {
-                        Label("Immersive Space", systemImage: "mountain.2.fill")
-                            .labelStyle(.iconOnly)
-                    }  .onChange(of: showImmersiveSpace) { _, newValue in
-                        Task {
-                            if newValue {
-                                switch await openImmersiveSpace(id: "beach") {
-                                case .opened:
-                                    immersiveSpaceIsShown = true
-                                case .error, .userCancelled:
-                                    fallthrough
-                                @unknown default:
-                                    immersiveSpaceIsShown = false
-                                    showImmersiveSpace = false
+                    Menu(content: {
+                            Button("Mountains") {
+                                //Immersive Space
+                                showImmersiveSpace.toggle()
+                            }.onChange(of: showImmersiveSpace) { _, newValue in
+                                Task {
+                                    if newValue {
+                                        switch await openImmersiveSpace(id: "beach") {
+                                        case .opened:
+                                            immersiveSpaceIsShown = true
+                                        case .error, .userCancelled:
+                                            fallthrough
+                                        @unknown default:
+                                            immersiveSpaceIsShown = false
+                                            showImmersiveSpace = false
+                                        }
+                                    } else if immersiveSpaceIsShown {
+                                        await dismissImmersiveSpace()
+                                        immersiveSpaceIsShown = false
+                                    }
                                 }
-                            } else if immersiveSpaceIsShown {
-                                await dismissImmersiveSpace()
-                                immersiveSpaceIsShown = false
                             }
-                        }
-                    }
-                    .offset(x:-15)
+                        }, label: {
+                            Label("Immersive Space", systemImage: "mountain.2.fill")
+                                .labelStyle(.iconOnly)
+                        })
+                        .menuStyle(ButtonMenuStyle())
+                        .offset(x:-15)
                     
                 }
                 .offset(x:-90, y: 35)

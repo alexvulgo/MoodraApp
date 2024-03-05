@@ -144,36 +144,8 @@ struct ContentView: View {
                         })
                         .menuStyle(ButtonMenuStyle())
                     
-               /*     //Immersive Space Button
-                    Button {
-                        //Immersive Space
-                        showImmersiveSpace.toggle()
-                    } label: {
-                        Label("Immersive Space", systemImage: "mountain.2.fill")
-                            .labelStyle(.iconOnly)
-                    }     .onChange(of: showImmersiveSpace) { _, newValue in
-                        Task {
-                            if newValue {
-                                switch await openImmersiveSpace(id: "beach") {
-                                case .opened:
-                                    immersiveSpaceIsShown = true
-                                case .error, .userCancelled:
-                                    fallthrough
-                                @unknown default:
-                                    immersiveSpaceIsShown = false
-                                    showImmersiveSpace = false
-                                }
-                            } else if immersiveSpaceIsShown {
-                                await dismissImmersiveSpace()
-                                immersiveSpaceIsShown = false
-                            }
-                        }
-                    }*/
-                    
+
                     // Audio selection button
-                    
-                  
-                        
                     Menu(content: {
                         ForEach(0..<sounds.count) { index in
                             Button(sounds[index]) {soundSelected = sounds[index]}
@@ -182,15 +154,6 @@ struct ContentView: View {
                                 .labelStyle(.iconOnly)
                         })
                         .menuStyle(ButtonMenuStyle())
-                    
-                     
-                 /*   Button {
-                        //Immersive Space
-                       
-                    } label: {
-                        Label("Audio Selection", systemImage: "speaker.wave.3.fill")
-                            .labelStyle(.iconOnly)
-                    }*/
                 }
             }
         }
