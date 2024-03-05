@@ -9,17 +9,17 @@ struct MoodraAppVisionApp: App {
     
     @State var showImmersiveSpace = false
     @State var immersiveSpaceIsShown = false
-    
+    @State var soundSelected = "Calm Sea"
 
     
     var body: some Scene {
         WindowGroup (id: "main"){
-            ContentView(showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
+            ContentView(soundSelected: $soundSelected, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
         }
         .windowResizability(.contentSize)
         
         WindowGroup(id: "session") { // Identify the window group.
-            SessionView(dismissMudraView: $dismissMudraView,showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown) // the SwiftUI view
+            SessionView(dismissMudraView: $dismissMudraView,showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown, soundSelected :$soundSelected) // the SwiftUI view
         }
        .defaultSize(CGSize(width: 420, height: 240))
         

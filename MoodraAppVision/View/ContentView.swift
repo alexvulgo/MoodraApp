@@ -18,6 +18,9 @@ struct ContentView: View {
 
     @State var startASession = false
     
+    @Binding var soundSelected : String
+    var sounds : [String] = ["Calm Sea","Howling Wind"]
+    
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
     
@@ -113,7 +116,35 @@ struct ContentView: View {
                 
                 HStack {
                     
-                    //Immersive Space Button
+                    Menu(content: {
+                            Button("Mountains") {
+                                //Immersive Space
+                                showImmersiveSpace.toggle()
+                            }.onChange(of: showImmersiveSpace) { _, newValue in
+                                Task {
+                                    if newValue {
+                                        switch await openImmersiveSpace(id: "beach") {
+                                        case .opened:
+                                            immersiveSpaceIsShown = true
+                                        case .error, .userCancelled:
+                                            fallthrough
+                                        @unknown default:
+                                            immersiveSpaceIsShown = false
+                                            showImmersiveSpace = false
+                                        }
+                                    } else if immersiveSpaceIsShown {
+                                        await dismissImmersiveSpace()
+                                        immersiveSpaceIsShown = false
+                                    }
+                                }
+                            }
+                        }, label: {
+                            Label("Immersive Space", systemImage: "mountain.2.fill")
+                                .labelStyle(.iconOnly)
+                        })
+                        .menuStyle(ButtonMenuStyle())
+                    
+               /*     //Immersive Space Button
                     Button {
                         //Immersive Space
                         showImmersiveSpace.toggle()
@@ -137,23 +168,30 @@ struct ContentView: View {
                                 immersiveSpaceIsShown = false
                             }
                         }
-                    }
+                    }*/
                     
                     // Audio selection button
                     
-                    Button {
+                  
+                        
+                    Menu(content: {
+                        ForEach(0..<sounds.count) { index in
+                            Button(sounds[index]) {soundSelected = sounds[index]}
+                        }}, label: {
+                            Label("Sound", systemImage: "speaker.fill")
+                                .labelStyle(.iconOnly)
+                        })
+                        .menuStyle(ButtonMenuStyle())
+                    
+                     
+                 /*   Button {
                         //Immersive Space
                        
                     } label: {
                         Label("Audio Selection", systemImage: "speaker.wave.3.fill")
                             .labelStyle(.iconOnly)
-                    }
-                    
-                    
-                    
-                   
+                    }*/
                 }
-                
             }
         }
         

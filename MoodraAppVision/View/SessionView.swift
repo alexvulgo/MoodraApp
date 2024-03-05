@@ -26,6 +26,7 @@ struct SessionView: View {
     
     @Binding  var showImmersiveSpace : Bool
     @Binding  var immersiveSpaceIsShown : Bool
+    @Binding var soundSelected : String
     
     func dismissWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
@@ -113,7 +114,7 @@ struct SessionView: View {
                         Button("Start") {
                             isPresentingTimerView.toggle()
                             timer.start()
-                            player.playSound(soundName: "calmSea", soundType: "mp3")
+                            player.playSound(soundName: soundSelected, soundType: "mp3")
                             dismissMudraView = false
                             openWindow(id: "mudra")
                         }

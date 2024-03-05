@@ -41,7 +41,7 @@ class Player: ObservableObject {
         sound.pause()
     }
     
-    func stopSoud() {
+    func stopSound() {
         sound.stop()
     }
 }

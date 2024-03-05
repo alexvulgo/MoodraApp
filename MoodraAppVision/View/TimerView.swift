@@ -64,35 +64,33 @@ import AVFoundation
                         }
                         .offset(x:15, y:-65)
                         
-                        
-                        
                             Text("\(timer.text)")
                                 .font(.system(size: 100))
                                 .bold()
                                 .padding(.trailing, 60)
                                 .frame(width: 340, height: 50)
-                    }
-                    HStack {
-                        Button {
-                            if timer.isMuted {
-                                player.resumeSound()
                             }
-                            else {
-                                player.pauseSound()
-                            }
-                            timer.isMuted.toggle()
-                        } label: {
-                            if(timer.isMuted) {
-                                Label("Mute", systemImage: "speaker.slash.fill")
-                                    .labelStyle(.iconOnly)
-                            }
-                            else {
-                                Label("Speaker", systemImage: "speaker.wave.3.fill")
-                                    .labelStyle(.iconOnly)
-                            }
-                        }
-                        .padding(.leading, 12)
-                        .padding(.trailing, 10)
+                            HStack {
+                                Button {
+                                    if timer.isMuted {
+                                        player.resumeSound()
+                                    }
+                                    else {
+                                        player.pauseSound()
+                                    }
+                                    timer.isMuted.toggle()
+                                } label: {
+                                    if(timer.isMuted) {
+                                        Label("Mute", systemImage: "speaker.slash.fill")
+                                            .labelStyle(.iconOnly)
+                                    }
+                                    else {
+                                        Label("Speaker", systemImage: "speaker.wave.3.fill")
+                                            .labelStyle(.iconOnly)
+                                    }
+                                }
+                                .padding(.leading, 12)
+                                .padding(.trailing, 10)
                         
                         ProgressView(value: timer.timeRemaining() / Float(timeSelected))
                             .contentShape(.accessibility, Capsule().offset(y: -3))
@@ -146,7 +144,7 @@ import AVFoundation
         func reset() {
             self.isPresented = false
             timer.reset(minutes : timeSelected)
-            player.stopSoud()
+            player.stopSound()
             timer.isMuted = true
             dismissMudraView = true
             timer.isExpired = false
