@@ -18,7 +18,7 @@ struct TutorialView: View {
     
     //Variables for hand tracking
     @State var handController : HandGestureController = HandGestureController()
-    @State var temp = false //created to test the countdown
+    //@State var temp = false //created to test the countdown
     @State private var timer: Timer? //timer used for countdown
     @State private var counter = 5 //the user have to mantain the position for 5 seconds
     
@@ -106,8 +106,8 @@ struct TutorialView: View {
                         .font(.system(size: 16))
                         .padding()
                     
-                    if(!temp){
-                        //if(!handController.checkMudra(mudraToCheck: selectedMudra[i].name)){
+                  //  if(!temp){
+                    if(!handController.checkMudra(mudraToCheck: selectedMudra[i].name)){
                         //Incorrect position
                     VStack{
                         ZStack{
@@ -150,9 +150,9 @@ struct TutorialView: View {
                 }
                 .padding(.bottom, 70)
             }
-        }.onTapGesture {
+        }/*.onTapGesture {
             temp.toggle()
-        }
+        }*/
     }
     
     
@@ -181,7 +181,7 @@ struct TutorialView: View {
                 timer?.invalidate()
                 timer = nil
                 if i == 3 {i = 0; self.reset(); count = 0} else {count += 1}
-                temp = false
+               // temp = false
             }
         }
     }
