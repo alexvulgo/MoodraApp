@@ -12,10 +12,15 @@ struct TutorialView: View {
     @Binding var selectedMudra : [Mudra]
     @Binding var dismissMudraView : Bool
     
-    @State private var i = 0
-    @State private var counter = 0
+    @Binding var count : Int //variable that updates the mudraView
     
-    @State var positionIsCorrect: Bool = false
+    @State private var i = 0
+    
+    //Variables for hand tracking
+    @State var handController : HandGestureController = HandGestureController()
+    //@State var temp = false //created to test the countdown
+    @State private var timer: Timer? //timer used for countdown
+    @State private var counter = 5 //the user have to mantain the position for 5 seconds
     
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismiss) private var dismiss
@@ -35,7 +40,7 @@ struct TutorialView: View {
     @Binding  var immersiveSpaceIsShown : Bool
     
     var body: some View {
-        
+            
         NavigationStack {
             
             VStack(alignment: .leading) {
@@ -45,118 +50,140 @@ struct TutorialView: View {
                     //Back Button and Immersive Space Button
                     
                     Button {
-                        openWindow(id: "main")
-                        dismissMudraView = true
-                        dismissWindow()
-                        dismissWindow()
+                        self.reset()
                     } label: {
                         Label("Back", systemImage: "chevron.backward")
                             .labelStyle(.iconOnly)
                     }
-                    .offset(y: -8)
+                    .offset(x: 5)
                     
-                    Button {
-                        //Immersive Space
-                        showImmersiveSpace.toggle()
-                    } label: {
-                        Label("Immersive Space", systemImage: "mountain.2.fill")
-                            .labelStyle(.iconOnly)
-                    }  .onChange(of: showImmersiveSpace) { _, newValue in
-                        Task {
-                            if newValue {
-                                switch await openImmersiveSpace(id: "beach") {
-                                case .opened:
-                                    immersiveSpaceIsShown = true
-                                case .error, .userCancelled:
-                                    fallthrough
-                                @unknown default:
-                                    immersiveSpaceIsShown = false
-                                    showImmersiveSpace = false
+                    Menu(content: {
+                            Button("Mountains") {
+                                //Immersive Space
+                                showImmersiveSpace.toggle()
+                            }.onChange(of: showImmersiveSpace) { _, newValue in
+                                Task {
+                                    if newValue {
+                                        switch await openImmersiveSpace(id: "beach") {
+                                        case .opened:
+                                            immersiveSpaceIsShown = true
+                                        case .error, .userCancelled:
+                                            fallthrough
+                                        @unknown default:
+                                            immersiveSpaceIsShown = false
+                                            showImmersiveSpace = false
+                                        }
+                                    } else if immersiveSpaceIsShown {
+                                        await dismissImmersiveSpace()
+                                        immersiveSpaceIsShown = false
+                                    }
                                 }
-                            } else if immersiveSpaceIsShown {
-                                await dismissImmersiveSpace()
-                                immersiveSpaceIsShown = false
                             }
-                        }
-                    }
-                    .offset(y: -8)
+                        }, label: {
+                            Label("Immersive Space", systemImage: "mountain.2.fill")
+                                .labelStyle(.iconOnly)
+                        })
+                        .menuStyle(ButtonMenuStyle())
+                        .offset(x:-15)
                     
-                }.padding()
+                }
+                .offset(x:-90, y: 35)
                 
-                
-                HStack{
-                    
-                    Spacer()
+                VStack(alignment: .center) {
                     
                     Text("\(selectedMudra[i].name)")
                         .bold()
+                        .font(.system(size: 24))
                         .padding()
                     
-                    Spacer()
-                    
-                }
-                
-                HStack{
-                    
-                    Spacer()
+             
                     
                     Text("Put your hands as shown")
+                        .font(.system(size: 18))
                         .padding()
                     
-                    Spacer()
+                    Text("\(i+1)/3")
+                        .font(.system(size: 16))
+                        .padding()
                     
-                }
-                
-                VStack(){
-                    Spacer()
-                    if(!positionIsCorrect) {
+                  //  if(!temp){
+                    if(!handController.checkMudra(mudraToCheck: selectedMudra[i].name)){
                         //Incorrect position
+                    VStack{
                         ZStack{
                             Image(systemName: "circle")
                                 .foregroundStyle(.red)
-                                .font(.system(size: 60))
+                                .font(.system(size: 50))
                             
-                            Text("5")
+                            Text("\(String(format: "%d", counter))")
                                 .bold()
-                                .font(.system(size: 30))
+                                .font(.system(size: 22))
                         }
-                        Spacer()
-                        
-                        HStack{
-                            Spacer()
-                            Text("Incorrect Position")
-                                .bold()
-                            Spacer()
-                        }.padding()
+                        .onAppear(perform: {
+                            self.resetCountdown()
+                        })
+                        Text("Incorrect position")
+                            .font(.system(size: 24))
+                            .bold()
                     }
-                    
+                    }
                     else { //correct position
-                        
-                        
-                        
+                    VStack{
                         ZStack{
                             Image(systemName: "circle")
                                 .foregroundStyle(.green)
-                                .font(.system(size: 60))
+                                .font(.system(size: 50))
                             
-                            Text("4") //TODO: change it
+                            Text("\(String(format: "%d", counter))")
                                 .bold()
-                                .font(.system(size: 30))
+                                .font(.system(size: 24))
                         }
-                        Spacer()
+                        .onAppear(perform: {
+                            self.startCountdown()
+                        })
                         
-                        HStack{
-                            Spacer()
-                            Text("Correct Position")
-                                .bold()
-                            Spacer()
-                        }.padding()
+                        Text("Correct position")
+                            .font(.system(size: 24))
+                            .bold()
                     }
-                    
                 }
+                }
+                .padding(.bottom, 70)
             }
-            
-        }//.frame(width: 1300, height: 360)
+        }/*.onTapGesture {
+            temp.toggle()
+        }*/
+    }
+    
+    
+    func reset() {
+           openWindow(id: "main")
+           dismissMudraView = true
+           dismissWindow()
+           dismissWindow()
+       }
+    
+    func resetCountdown() {
+        counter = 5
+        
+        if ((timer?.isValid) != nil)  {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    func startCountdown() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            counter -= 1
+
+            if(counter == 0){
+                i += 1
+                timer?.invalidate()
+                timer = nil
+                if i == 3 {i = 0; self.reset(); count = 0} else {count += 1}
+               // temp = false
+            }
+        }
     }
 }
 

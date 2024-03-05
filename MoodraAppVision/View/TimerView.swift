@@ -38,31 +38,34 @@ import AVFoundation
                         .offset(x: 20, y: -65)
                         
 
-                        Button {
-                            //Immersive Space
-                            showImmersiveSpace.toggle()
-                        } label: {
-                            Label("Immersive Space", systemImage: "mountain.2.fill")
-                                .labelStyle(.iconOnly)
-                        }     .onChange(of: showImmersiveSpace) { _, newValue in
-                            Task {
-                                if newValue {
-                                    switch await openImmersiveSpace(id: "beach") {
-                                    case .opened:
-                                        immersiveSpaceIsShown = true
-                                    case .error, .userCancelled:
-                                        fallthrough
-                                    @unknown default:
-                                        immersiveSpaceIsShown = false
-                                        showImmersiveSpace = false
+                        Menu(content: {
+                                Button("Mountains") {
+                                    //Immersive Space
+                                    showImmersiveSpace.toggle()
+                                }.onChange(of: showImmersiveSpace) { _, newValue in
+                                    Task {
+                                        if newValue {
+                                            switch await openImmersiveSpace(id: "beach") {
+                                            case .opened:
+                                                immersiveSpaceIsShown = true
+                                            case .error, .userCancelled:
+                                                fallthrough
+                                            @unknown default:
+                                                immersiveSpaceIsShown = false
+                                                showImmersiveSpace = false
+                                            }
+                                        } else if immersiveSpaceIsShown {
+                                            await dismissImmersiveSpace()
+                                            immersiveSpaceIsShown = false
+                                        }
                                     }
-                                } else if immersiveSpaceIsShown {
-                                    await dismissImmersiveSpace()
-                                    immersiveSpaceIsShown = false
                                 }
-                            }
-                        }
-                        .offset(x:15, y:-65)
+                            }, label: {
+                                Label("Immersive Space", systemImage: "mountain.2.fill")
+                                    .labelStyle(.iconOnly)
+                            })
+                            .menuStyle(ButtonMenuStyle())
+                            .offset(x:15, y:-65)
                         
                             Text("\(timer.text)")
                                 .font(.system(size: 100))
@@ -96,7 +99,7 @@ import AVFoundation
                             .contentShape(.accessibility, Capsule().offset(y: -3))
                             .accessibilityLabel("")
                             .accessibilityValue(Text("5 seconds remaining"))
-                            .tint(Color(uiColor: UIColor(red: 242 / 255, green: 68 / 255, blue: 206 / 255, alpha: 1.0)))
+                            .tint(Color(white: 1))
                             .padding(.vertical, 30)
                         Button {
                             if(!timer.isPaused){
