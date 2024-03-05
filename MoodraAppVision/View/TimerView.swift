@@ -96,7 +96,7 @@ import AVFoundation
                             .contentShape(.accessibility, Capsule().offset(y: -3))
                             .accessibilityLabel("")
                             .accessibilityValue(Text("5 seconds remaining"))
-                            .tint(Color(uiColor: UIColor(red: 242 / 255, green: 68 / 255, blue: 206 / 255, alpha: 1.0)))
+                            .tint(Color(white: 1))
                             .padding(.vertical, 30)
                         Button {
                             if(!timer.isPaused){

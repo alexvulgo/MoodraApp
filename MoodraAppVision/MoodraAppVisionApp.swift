@@ -10,7 +10,6 @@ struct MoodraAppVisionApp: App {
     @State var showImmersiveSpace = false
     @State var immersiveSpaceIsShown = false
     @State var soundSelected = "Calm Sea"
-
     
     var body: some Scene {
         WindowGroup (id: "main"){
@@ -24,7 +23,7 @@ struct MoodraAppVisionApp: App {
        .defaultSize(CGSize(width: 420, height: 240))
         
         WindowGroup(id: "tutorial"){
-            TutorialView(selectedMudra: $selectedMudra, dismissMudraView: $dismissMudraView, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
+            TutorialView(selectedMudra: $selectedMudra, dismissMudraView: $dismissMudraView, count: $count, showImmersiveSpace: $showImmersiveSpace, immersiveSpaceIsShown: $immersiveSpaceIsShown)
                 }
                 .defaultSize(CGSize(width: 420, height: 360))
         
