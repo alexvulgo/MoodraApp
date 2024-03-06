@@ -13,11 +13,11 @@ class HandGestureController {
     
     func checkMudra(mudraToCheck: String) -> Bool {
         switch mudraToCheck{
-        case "pataka": return checkPataka()
-        case "tripataka": return checkTriPataka()
-        case "mushthu": return checkMushthu()
-        case "ardmachandra": return checkArdmachandra()
-        case "shikhara": return checkShikhara()
+        case "Pataka": return checkPataka()
+        case "Tripataka": return checkTriPataka()
+        case "Mushti": return checkMushthu()
+        case "Ardhachandra": return checkArdmachandra()
+        //case "shikhara": return checkShikhara()
         default: return false
         }
     }

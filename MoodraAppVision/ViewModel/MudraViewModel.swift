@@ -29,7 +29,7 @@ class MudraViewModel {
           instructions: ["default-mudra", "default-mudra2"],
           name: "Mushti",
           info: "Info"),
-    Mudra(images: ["Alapadma", "Alapadma"],
+   /* Mudra(images: ["Alapadma", "Alapadma"],
           instructions: ["default-mudra", "default-mudra2"],
           name: "Alapadma",
           info: "Info"),
@@ -37,7 +37,7 @@ class MudraViewModel {
           instructions: ["default-mudra", "default-mudra2"],
           name: "Hamsasya",
           info: "Info")
-    
+    */
     ]
     
     
