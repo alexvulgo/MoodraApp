@@ -19,11 +19,9 @@ struct PageView: View {
         VStack(spacing: 20) {
             
             ZStack{
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 222, height: 222)
                 
-                Image("Main")
+                
+                Image(page.image)
                     .resizable()
                     .frame(width: 222, height: 222)
                 

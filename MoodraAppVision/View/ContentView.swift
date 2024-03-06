@@ -50,7 +50,7 @@ struct ContentView: View {
                         .fill(Color.white)
                         .frame(width: 222, height: 222)
                     
-                    Image("Main")
+                    Image("mainIcon")
                         .resizable()
                         .frame(width: 222, height: 222)
                     
