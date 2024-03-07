@@ -12,14 +12,16 @@ import RealityKitContent
 
 /// A view that displays a 360 degree scene in which to watch video.
 struct DestinationView: View {
+    @ObservedObject var gestureModel: HandGestureDetectionModel
     
     @State private var destination: Destination
     @State private var destinationChanged = false
     
     //@Environment(Mudra.self) private var model
     
-    init(_ destination: Destination) {
+    init(_ destination: Destination, gestureModel: HandGestureDetectionModel) {
         self.destination = destination
+        self.gestureModel = gestureModel
     }
     
     var body: some View {

@@ -61,10 +61,15 @@ struct MoodraAppVisionApp: App {
 #if os(visionOS)
         // Defines an immersive space to present a destination in which to watch the video.
         ImmersiveSpace(id: "beach") {
-            DestinationView(.beach)
+            DestinationView(.beach, gestureModel: HandGestureModelContainer.handGestureModel)
         }
         // Set the immersion style to progressive, so the user can use the crown to dial in their experience.
         .immersionStyle(selection: .constant(.progressive), in: .progressive)
 #endif
     }
+}
+
+@MainActor
+enum HandGestureModelContainer {
+    private(set) static var handGestureModel = HandGestureDetectionModel()
 }
