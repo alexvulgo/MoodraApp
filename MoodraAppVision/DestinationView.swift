@@ -41,11 +41,22 @@ struct DestinationView: View {
                 guard destinationChanged else { return }
                 guard let entity = content.entities.first else { fatalError() }
                 entity.updateTexture(for: destination)
+                gestureModel.computeTransformOfHandGestures()
                 Task { @MainActor in
                     destinationChanged = false
                 }
+                
             }
+        }        .task {
+            await gestureModel.start()
         }
+        .task {
+            await gestureModel.publishHandTrackingUpdates()
+        }
+        .task {
+            await gestureModel.monitorSessionEvents()
+        }
+
     }
 }
 
