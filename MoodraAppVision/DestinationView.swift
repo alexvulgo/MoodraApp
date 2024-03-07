@@ -22,6 +22,7 @@ struct DestinationView: View {
     init(_ destination: Destination, gestureModel: HandGestureDetectionModel) {
         self.destination = destination
         self.gestureModel = gestureModel
+        gestureModel.computeTransformOfHandGestures()
     }
     
     var body: some View {
