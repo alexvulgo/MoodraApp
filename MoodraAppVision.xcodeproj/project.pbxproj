@@ -13,7 +13,7 @@
 		63C885622B874DA100C33BFD /* MudraDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885612B874DA100C33BFD /* MudraDetailsView.swift */; };
 		63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885632B874E1C00C33BFD /* TimerUtil.swift */; };
 		63C885682B874EA500C33BFD /* MudraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885672B874EA500C33BFD /* MudraView.swift */; };
-		63C8856A2B87519400C33BFD /* HandGestureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885692B87519400C33BFD /* HandGestureModel.swift */; };
+		63C8856A2B87519400C33BFD /* HandGestureDetectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885692B87519400C33BFD /* HandGestureDetectionModel.swift */; };
 		63C8856C2B87520B00C33BFD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8856B2B87520B00C33BFD /* Extensions.swift */; };
 		63C8856F2B87546300C33BFD /* Mudra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8856E2B87546300C33BFD /* Mudra.swift */; };
 		63C885722B87556A00C33BFD /* MudraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C885712B87556A00C33BFD /* MudraViewModel.swift */; };
@@ -47,7 +47,7 @@
 		63C885612B874DA100C33BFD /* MudraDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraDetailsView.swift; sourceTree = "<group>"; };
 		63C885632B874E1C00C33BFD /* TimerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtil.swift; sourceTree = "<group>"; };
 		63C885672B874EA500C33BFD /* MudraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraView.swift; sourceTree = "<group>"; };
-		63C885692B87519400C33BFD /* HandGestureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGestureModel.swift; sourceTree = "<group>"; };
+		63C885692B87519400C33BFD /* HandGestureDetectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGestureDetectionModel.swift; sourceTree = "<group>"; };
 		63C8856B2B87520B00C33BFD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		63C8856E2B87546300C33BFD /* Mudra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mudra.swift; sourceTree = "<group>"; };
 		63C885712B87556A00C33BFD /* MudraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MudraViewModel.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		63FEE7252B8F257A00908006 /* HandTracking */ = {
 			isa = PBXGroup;
 			children = (
-				63C885692B87519400C33BFD /* HandGestureModel.swift */,
+				63C885692B87519400C33BFD /* HandGestureDetectionModel.swift */,
 				63FEE7352B90862C00908006 /* HandModel.swift */,
 				63FEE7332B9082CF00908006 /* Testing.swift */,
 				63FEE76D2B920B2500908006 /* HandGestureController.swift */,
@@ -291,7 +291,7 @@
 			files = (
 				63FEE7222B8F24F300908006 /* HandTerms.swift in Sources */,
 				FADBEEA42B973953009157A2 /* PageModel.swift in Sources */,
-				63C8856A2B87519400C33BFD /* HandGestureModel.swift in Sources */,
+				63C8856A2B87519400C33BFD /* HandGestureDetectionModel.swift in Sources */,
 				63C885602B874D3D00C33BFD /* TimerView.swift in Sources */,
 				63FEE76E2B920B2500908006 /* HandGestureController.swift in Sources */,
 				63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */,
