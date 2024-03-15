@@ -1,7 +1,10 @@
 import SwiftUI
 
+let handTrackFake = HandTrackFake()
+
 @main
 struct MoodraAppVisionApp: App {
+    
 
     @State var selectedMudra : [Mudra] = []
     @State var count : Int = 0

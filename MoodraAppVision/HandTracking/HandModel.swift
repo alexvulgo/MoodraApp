@@ -8,7 +8,7 @@
 import Foundation
 
 
-class HandModel {
+class HandModel1 {
     static let leftHand = HandModel()
     static let rightHand = HandModel()
     

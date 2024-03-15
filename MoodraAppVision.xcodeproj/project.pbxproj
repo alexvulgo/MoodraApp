@@ -34,6 +34,11 @@
 		FA4C38A22B84B250000852DD /* ImageBasedLighting.skybox in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A12B84B250000852DD /* ImageBasedLighting.skybox */; };
 		FA4C38A42B84B25D000852DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A32B84B25D000852DD /* Assets.xcassets */; };
 		FA4C38A72B84B25D000852DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4C38A62B84B25D000852DD /* Preview Assets.xcassets */; };
+		FA926D542BA465C4003E6671 /* HandTrackFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA926D532BA465C4003E6671 /* HandTrackFake.swift */; };
+		FA926D562BA46673003E6671 /* HandTrackProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA926D552BA46673003E6671 /* HandTrackProcess.swift */; };
+		FA926D582BA466EB003E6671 /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA926D572BA466EB003E6671 /* HandModel.swift */; };
+		FA926D5A2BA466F9003E6671 /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA926D592BA466F9003E6671 /* Hands.swift */; };
+		FA926D5D2BA46837003E6671 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA926D5C2BA46837003E6671 /* ViewModel.swift */; };
 		FADBEEA42B973953009157A2 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBEEA32B973953009157A2 /* PageModel.swift */; };
 		FADBEEA62B973B7E009157A2 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBEEA52B973B7E009157A2 /* PageView.swift */; };
 		FADBEEA82B973E84009157A2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADBEEA72B973E84009157A2 /* OnboardingView.swift */; };
@@ -72,6 +77,11 @@
 		FA4C38A32B84B25D000852DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA4C38A62B84B25D000852DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FA4C38A82B84B25D000852DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA926D532BA465C4003E6671 /* HandTrackFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackFake.swift; sourceTree = "<group>"; };
+		FA926D552BA46673003E6671 /* HandTrackProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackProcess.swift; sourceTree = "<group>"; };
+		FA926D572BA466EB003E6671 /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
+		FA926D592BA466F9003E6671 /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
+		FA926D5C2BA46837003E6671 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		FADBEEA32B973953009157A2 /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		FADBEEA52B973B7E009157A2 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		FADBEEA72B973E84009157A2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 				63C885632B874E1C00C33BFD /* TimerUtil.swift */,
 				63C8856B2B87520B00C33BFD /* Extensions.swift */,
 				63FEE76F2B92169F00908006 /* AudioManager.swift */,
+				FA926D532BA465C4003E6671 /* HandTrackFake.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 				63FEE7352B90862C00908006 /* HandModel.swift */,
 				63FEE7332B9082CF00908006 /* Testing.swift */,
 				63FEE76D2B920B2500908006 /* HandGestureController.swift */,
+				FA926D552BA46673003E6671 /* HandTrackProcess.swift */,
 			);
 			path = HandTracking;
 			sourceTree = "<group>";
@@ -157,6 +169,7 @@
 		FA4C388B2B84B250000852DD = {
 			isa = PBXGroup;
 			children = (
+				FA926D5B2BA46712003E6671 /* Hands */,
 				FA4C38962B84B250000852DD /* MoodraAppVision */,
 				FA4C38972B84B250000852DD /* Packages */,
 				FA4C38952B84B250000852DD /* Products */,
@@ -207,6 +220,16 @@
 				FA4C38A62B84B25D000852DD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FA926D5B2BA46712003E6671 /* Hands */ = {
+			isa = PBXGroup;
+			children = (
+				FA926D572BA466EB003E6671 /* HandModel.swift */,
+				FA926D592BA466F9003E6671 /* Hands.swift */,
+				FA926D5C2BA46837003E6671 /* ViewModel.swift */,
+			);
+			path = Hands;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,18 +313,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				63FEE7222B8F24F300908006 /* HandTerms.swift in Sources */,
+				FA926D5A2BA466F9003E6671 /* Hands.swift in Sources */,
 				FADBEEA42B973953009157A2 /* PageModel.swift in Sources */,
 				63C8856A2B87519400C33BFD /* HandGestureDetectionModel.swift in Sources */,
 				63C885602B874D3D00C33BFD /* TimerView.swift in Sources */,
 				63FEE76E2B920B2500908006 /* HandGestureController.swift in Sources */,
+				FA926D5D2BA46837003E6671 /* ViewModel.swift in Sources */,
 				63C885642B874E1C00C33BFD /* TimerUtil.swift in Sources */,
 				63C8856F2B87546300C33BFD /* Mudra.swift in Sources */,
 				FA4C389E2B84B250000852DD /* ContentView.swift in Sources */,
+				FA926D582BA466EB003E6671 /* HandModel.swift in Sources */,
 				FAEA5D052B88AD53007BE0E6 /* MudraSelectionView.swift in Sources */,
+				FA926D562BA46673003E6671 /* HandTrackProcess.swift in Sources */,
 				FA4C389C2B84B250000852DD /* MoodraAppVisionApp.swift in Sources */,
 				FA4C38A02B84B250000852DD /* ImmersiveView.swift in Sources */,
 				63C885622B874DA100C33BFD /* MudraDetailsView.swift in Sources */,
 				63C8855E2B874CF500C33BFD /* TutorialView.swift in Sources */,
+				FA926D542BA465C4003E6671 /* HandTrackFake.swift in Sources */,
 				63C885682B874EA500C33BFD /* MudraView.swift in Sources */,
 				63C885722B87556A00C33BFD /* MudraViewModel.swift in Sources */,
 				63D4025E2B8C70AE002CD941 /* DestinationView.swift in Sources */,
