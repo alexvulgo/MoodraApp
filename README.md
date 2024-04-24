@@ -10,7 +10,7 @@ Alessandro Esposito Vulgo Gigante,
 
 Luigi Fiorentino,
 
-Matteo Perrotta,
+Matteo Perotta,
 
 Alexia Merolla,
 
