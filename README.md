@@ -1,4 +1,4 @@
-# Moodra: Meditate with mudras
+# Moodra: Meditate with Mudras
 An app that uses ARKit’s human body-tracking feature
 to guide users through dynamic meditation,
 displaying mudras and postures for them to follow.
@@ -24,11 +24,11 @@ We used RealityKit to create fully immersive spaces, and Reality Composer Pro to
 
 The goal of Moodra is to teach different hand positions to allow users to do dynamic meditation sessions. The app has two sections: “Learn Mudra” and “Meditate”.
 
-Tapping on “Learn mudra” the app lets you choose three positions among the ones available and practice them correctly.
+Tapping on “Learn mudra” the app lets you choose three positions among the ones available and practice them.
 
 Using ARKit's hand tracking, Moodra recognizes when a user has done a mudra correctly, considering it successful only if held for at least five seconds.
 
-Also The Meditate section lets you choose  three mudras and meditation time, organizing the environment for a perfect session.
+Also the meditate section lets you choose three mudras and meditation time, organizing the environment for a perfect session.
 
 The app lets the users decide whether to use the immersive space by tapping a button and choosing their preferred environment.
 
