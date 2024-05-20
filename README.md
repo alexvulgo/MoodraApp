@@ -20,7 +20,7 @@ Matthew Andrea D'Alessio
 <img src="https://github.com/alexvulgo/MoodraApp/assets/120048791/d0cfe46d-70b5-461a-b75c-6a7924af0a87" width=70% height=70%>
 
 ## Description: 
-We used RealityKit to create fully immersive spaces, and Reality Composer Pro to customize them, then in order to understand if a mudra was performed correctly, we had to ensure a method that worked on any kind of human hand. We created an algorithm that is capable of detecting if a finger is “closed” or “extended”, using just the relative distances between its fingertips and knuckles.
+In order to understand if a mudra was performed correctly, we had to ensure a method that worked on any kind of human hand. We created an algorithm that is capable of detecting if a finger is “closed” or “extended”, using just the relative distances between its fingertips and knuckles.
 
 The goal of Moodra is to teach different hand positions to allow users to do dynamic meditation sessions. The app has two sections: “Learn Mudra” and “Meditate”.
 
